@@ -1,4 +1,4 @@
-# c220_hackathon1
+# hackathon-1
 
 For this hackathon, you and your team will be collaborating to build a Connect Four game. A description of the basic game rules can be found [here](https://en.wikipedia.org/wiki/Connect_Four#Gameplay).
 
@@ -17,12 +17,6 @@ For this hackathon, you and your team will be collaborating to build a Connect F
 - Add a customizable time limit per turn.
 - Allow players to choose an custom icon for their discs.
 - Allow players to choose the dimensions of the game rack before starting a game.
-
-### Groups
-
-<p align="middle">
-  <img src="images/groups.png">
-</p>
 
 ### Getting Started
 
@@ -54,8 +48,8 @@ Once all of your team's changes are done, you'll want to turn in your work. This
 1. Go to your fork's repository on GitHub.com.
 1. Go to the **Pull Requests** tab.
 1. Click the **New Pull Request** button.
-1. Select `Learning-Fuze/c220_hackathon1` as the `base` repository.
-1. Select your team's branch as the `base` branch.
+1. Select `Learning-Fuze/hackathon-1` as the `base` repository.
+1. Select `student-reviews` as the `base` branch.
 1. Select your fork as the `head` repository.
 1. Select your `master` branch as the `compare` branch.
 1. Click **Create Pull Request**.
