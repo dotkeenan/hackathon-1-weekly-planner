@@ -20,9 +20,9 @@ For this hackathon, you and your team will be collaborating to build a Weekly Pl
 ## Stretch Features (optional)
 
 - User can create repeating events
-- Generate times using the JavaScript Date object
+- Generate times using the [JavaScript Date object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
 - User can plan multiple weeks
-- Entries persist in `LocalStorage`
+- Entries persist in [LocalStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
 
 ### Getting Started
 
