@@ -1,22 +1,40 @@
 # hackathon-1
 
-For this hackathon, you and your team will be collaborating to build a Connect Four game. A description of the basic game rules can be found [here](https://en.wikipedia.org/wiki/Connect_Four#Gameplay).
+For this hackathon, you and your team will be collaborating to build a Weekly Planner.
 
-## Requirements
+## MVP Features
 
-- The game must support at least two players.
-- The game must automatically switch players after a player makes a move.
-- The game must automatically end and declare a winner when the win condition is met.
-- The game must offer to reset and begin a new game without refreshing the page.
+- User can view daily planner
+
+    ![User can view daily planner](images/user-can-view-daily-planner.png)
+
+- User can select day to view events
+
+    ![User can select day to view events](images/user-can-select-day-to-view-events.png)
+
+- User can add entry to day
+
+    ![User can add entry to day](images/user-can-add-entry-to-day.png)
+
+- User can update entry
+
+    ![User can update entry](images/user-can-update-entry.png)
+
+- User can delete entry
+
+    ![User can delete entry](images/user-can-delete-entry.png)
+
+- User can view total entries on a given day
+
+    ![User can view total entries on a given day](images/user-can-view-total-entries-on-a-given-day.png)
+
 
 ## Stretch Features (optional)
 
-- Keep track of the number of wins per player.
-- Make a custom theme for the game (_e.g._ Star Wars, Naruto, or Pusheen).
-- Add animations (_e.g_ when the player drops a disc into the game rack).
-- Add a customizable time limit per turn.
-- Allow players to choose an custom icon for their discs.
-- Allow players to choose the dimensions of the game rack before starting a game.
+- User can create repeating events
+- Generate times using the JavaScript Date object
+- User can plan multiple weeks
+- Entries persist in `LocalStorage`
 
 ### Getting Started
 
