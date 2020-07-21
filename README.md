@@ -4,29 +4,17 @@ For this hackathon, you and your team will be collaborating to build a Weekly Pl
 
 ## MVP Features
 
-- User can view daily planner
+- [User can view daily planner](images/user-can-view-daily-planner.png)
 
-    ![User can view daily planner](images/user-can-view-daily-planner.png)
+- [User can select day to view events](images/user-can-select-day-to-view-events.png)
 
-- User can select day to view events
+- [User can add entry to day](images/user-can-add-entry-to-day.png)
 
-    ![User can select day to view events](images/user-can-select-day-to-view-events.png)
+- [User can update entry](images/user-can-update-entry.png)
 
-- User can add entry to day
+- [User can delete entry](images/user-can-delete-entry.png)
 
-    ![User can add entry to day](images/user-can-add-entry-to-day.png)
-
-- User can update entry
-
-    ![User can update entry](images/user-can-update-entry.png)
-
-- User can delete entry
-
-    ![User can delete entry](images/user-can-delete-entry.png)
-
-- User can view total entries on a given day
-
-    ![User can view total entries on a given day](images/user-can-view-total-entries-on-a-given-day.png)
+- [User can view total entries on a given day](images/user-can-view-total-entries-on-a-given-day.png)
 
 
 ## Stretch Features (optional)
