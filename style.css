@@ -7,6 +7,7 @@ body  {
   max-width: 1250px;
 }
 
+
 #weekDaysContainer  {
   /* border just to see outlines of the elements */
   /* border: 2px solid red; */
@@ -26,4 +27,28 @@ body  {
   height: 90px;
   line-height: 90px;
   margin: 0 30px;
+
+}
+
+
+table, td, th {
+  border: 1px solid black;
+}
+
+table {
+  border-collapse: collapse;
+  width: 800px;
+
+}
+
+th {
+  text-align: left;
+}
+
+tr:nth-child(odd) {
+  background-color: lightgray;
+}
+
+td, th {
+  padding: 2px;
 }
