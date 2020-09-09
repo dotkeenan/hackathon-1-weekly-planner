@@ -1,11 +1,11 @@
-body {
+
+body  {
   width: 100vw;
   height: 100vh;
+  box-sizing: border-box;
+  margin: 0;
 }
-* {
-  font-family: "Raleway", sans-serif;
-}
-.container {
+.container  {
   max-width: 1250px;
 }
 .row {
@@ -28,4 +28,42 @@ body {
 }
 #addEntry:active {
   background-color: rgb(204, 204, 204);
+}
+
+#weekDaysContainer  {
+  /* border just to see outlines of the elements */
+  /* border: 2px solid red; */
+  display:flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.dayItem  {
+  border: 3px solid black;
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-align: center;
+  flex-basis: 105px;
+  height: 90px;
+  line-height: 90px;
+  margin: 0 30px;
+}
+table, td, th {
+  border: 1px solid black;
+}
+table {
+  border-collapse: collapse;
+  width: 800px;
+}
+th {
+  text-align: left;
+}
+
+tr:nth-child(odd) {
+  background-color: lightgray;
+}
+
+td, th {
+  padding: 2px;
 }
