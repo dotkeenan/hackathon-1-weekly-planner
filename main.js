@@ -186,7 +186,7 @@ var weekDaysArray = [
 // dom query for #weekDaysContainer & add event listener
 var weekDaysContainer = document.getElementById("weekDaysContainer");
 var selectedDayHeading = document.getElementById("selectedDayHeading");
-
+var addEntryBtn = document.getElementById("addEntryBtn");
 weekDaysContainer.addEventListener("click", getDay);
 // define function that stores the event.target (day clicked)
 function getDay(event) {
@@ -201,4 +201,12 @@ function getDay(event) {
     // console.log('targetDay textContent:', targetDayText);
     return targetDayText;
   }
+}
+
+console.log(addEntryBtn);
+addEntryBtn.addEventListener("click", openModal);
+// add event listener to button to open the modal
+function openModal(event) {
+  var containerModal = document.querySelector(".containerModal");
+  containerModal.classList.remove("class", "hidden");
 }

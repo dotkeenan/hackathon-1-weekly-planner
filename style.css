@@ -120,3 +120,6 @@ th {
 #submitButton:active {
   background-color: rgb(204, 204, 204);
 }
+.hidden {
+  display: none;
+}
