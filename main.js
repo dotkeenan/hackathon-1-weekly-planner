@@ -1,192 +1,8 @@
-var weekDaysArray = [
-  [
-    null,
-    "test - very important meeting",
-    null,
-    null,
-    "test - meeting with myself",
-    null,
-    null,
-    "test - meeting with someone else",
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-  ],
-  [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-  ],
-  [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-  ],
-  [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-  ],
-  [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-  ],
-  [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-  ],
-  [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-  ]
-];
 
 // dom query for #weekDaysContainer & add event listener
 var weekDaysContainer = document.getElementById("weekDaysContainer");
 var selectedDayHeading = document.getElementById("selectedDayHeading");
-
+var addEntryBtn = document.getElementById("addEntryBtn");
 weekDaysContainer.addEventListener("click", getDay);
 // define function that stores the event.target (day clicked)
 function getDay(event) {
@@ -198,13 +14,14 @@ function getDay(event) {
   // console.log('event.target:', targetDay)
   // Exclude clicks that aren't on the actual .dayItem's
   if (event.target.className.indexOf("dayItem") === -1) {
-    return
+    return;
   } else {
     selectedDayHeading.textContent = "Scheduled Events for " + targetDayText;
     // console.log('targetDay textContent:', targetDayText);
     return targetDayText;
   }
 }
+
 
 // Dom queries for modal elements
 var daySelect = document.getElementById("daySelect");
@@ -235,4 +52,12 @@ function addTableEntry() {
   tableDataTask.textContent = dayScheduleArr[dayName].description;
   tableRow.append(tableDataTime, tableDataTask);
   tableBody.append(tableRow);
+
+console.log(addEntryBtn);
+addEntryBtn.addEventListener("click", openModal);
+// add event listener to button to open the modal
+function openModal(event) {
+  var containerModal = document.querySelector(".containerModal");
+  containerModal.classList.remove("class", "hidden");
+
 }
