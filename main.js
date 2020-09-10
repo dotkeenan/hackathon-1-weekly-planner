@@ -1,187 +1,37 @@
-var weekDaysArray = [
-  [
-    null,
-    "test - very important meeting",
-    null,
-    null,
-    "test - meeting with myself",
-    null,
-    null,
-    "test - meeting with someone else",
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
+var weekDaysArray =
+
+{
+  sunday: [
+    {
+      time: "10:00",
+      description: "some plan"
+    },
+    {
+      time: "20:00",
+      description: "another meeting"
+    }
   ],
-  [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
+
+  monday: [
+
   ],
-  [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
+  tuesday: [
+
   ],
-  [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
+  wednsday: [
+
   ],
-  [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
+  thursday: [
+
   ],
-  [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
+  friday: [
+
   ],
-  [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
+  saturday: [
+
   ]
-];
+}
+
 
 // dom query for #weekDaysContainer & add event listener
 var weekDaysContainer = document.getElementById("weekDaysContainer");
@@ -192,6 +42,7 @@ weekDaysContainer.addEventListener("click", getDay);
 function getDay(event) {
   var targetDay = event.target;
   var targetDayText = targetDay.textContent;
+
   // console.log('event.target:', targetDay)
   // Exclude clicks that aren't on the actual .dayItem's
   if (event.target.className.indexOf("dayItem") === -1) {
@@ -201,4 +52,24 @@ function getDay(event) {
     // console.log('targetDay textContent:', targetDayText);
     return targetDayText;
   }
+}
+
+
+//----------new entry--------
+
+function enterNewData() {
+  weekDaysArray.daySelectValue.push({
+    time: timeSelectValue,
+    description: inputBoxValue,
+  });
+}
+
+
+//----------getting data from week array to display on table------
+
+var dayName = "sunday";
+
+var dayScheduleArr = [];
+for (var i = 0; i < weekDaysArray[dayName].length; i++) {
+  dayScheduleArr.push(weekDaysArray[dayName][i]);
 }
