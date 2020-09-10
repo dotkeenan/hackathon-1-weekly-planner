@@ -1,12 +1,10 @@
-
-body  {
-  width: 100vw;
-  height: 100vh;
+body {
   box-sizing: border-box;
   margin: 0;
 }
-.container  {
+.container {
   max-width: 1250px;
+  width: 100%;
 }
 .row {
   width: 100%;
@@ -30,26 +28,27 @@ body  {
   background-color: rgb(204, 204, 204);
 }
 
-#weekDaysContainer  {
+#weekDaysContainer {
   /* border just to see outlines of the elements */
   /* border: 2px solid red; */
-  display:flex;
-  flex-flow: row wrap;
-  justify-content: center;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
 }
-.dayItem  {
+.dayItem {
   border: 3px solid black;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: bold;
   text-align: center;
-  flex-basis: 105px;
-  height: 90px;
-  line-height: 90px;
-  margin: 0 30px;
+  width: 105px;
+  height: 105px;
+  line-height: 105px;
 }
-table, td, th {
+table,
+td,
+th {
   border: 1px solid black;
 }
 table {
@@ -63,7 +62,7 @@ th {
 tr:nth-child(odd) {
   background-color: lightgray;
 }
-
-td, th {
+td,
+th {
   padding: 2px;
 }
