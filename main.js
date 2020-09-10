@@ -180,7 +180,7 @@ var weekDaysArray = [
     null,
     null,
     null,
-  ]
+  ],
 ];
 
 // dom query for #weekDaysContainer & add event listener
@@ -195,7 +195,7 @@ function getDay(event) {
   // console.log('event.target:', targetDay)
   // Exclude clicks that aren't on the actual .dayItem's
   if (event.target.className.indexOf("dayItem") === -1) {
-    return
+    return;
   } else {
     selectedDayHeading.textContent = "Scheduled Events for " + targetDayText;
     // console.log('targetDay textContent:', targetDayText);
