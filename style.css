@@ -67,3 +67,59 @@ td,
 th {
   padding: 2px;
 }
+.containerModal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.addEntryModal {
+  width: 600px;
+  height: 280px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -300px;
+  margin-top: -140px;
+  background-color: white;
+  padding: 0.5rem;
+  text-align: center;
+}
+.divInModal {
+  display: flex;
+  flex-direction: column;
+}
+.containerModal select {
+  margin-bottom: 1rem;
+  padding: 0.2rem 1rem;
+  border: 2px solid black;
+  border-radius: 2px;
+  font-weight: 700;
+  margin-right: 2rem;
+}
+.containerModal button {
+  padding: 0.2rem 1rem;
+  border: 2px solid black;
+  border-radius: 2px;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background-color: white;
+  box-shadow: 2px 2px;
+  outline: none;
+}
+#descriptionSelect {
+  border: 2px solid black;
+}
+#submitButton:hover {
+  background-color: rgb(235, 235, 235);
+}
+#submitButton:active {
+  background-color: rgb(204, 204, 204);
+}
+.hidden {
+  display: none;
+}
