@@ -1,45 +1,33 @@
-
-var weekDaysArray =
-
-{
+var weekDaysArray = {
   sunday: [
     {
       time: "10:00",
-      description: "some plan"
+      description: "some plan",
     },
     {
       time: "20:00",
-      description: "another meeting"
-    }
+      description: "another meeting",
+    },
   ],
 
-  monday: [
+  monday: [],
+  tuesday: [],
+  wednsday: [],
+  thursday: [],
+  friday: [],
+  saturday: [],
+};
 
-  ],
-  tuesday: [
-
-  ],
-  wednsday: [
-
-  ],
-  thursday: [
-
-  ],
-  friday: [
-
-  ],
-  saturday: [
-
-  ]
-}
-
-
+var tableBody = document.getElementById("tableBody");
+var containerModal = document.querySelector(".containerModal");
+var inputBox = "";
+var daySelect = "";
+var timeSelect = "";
 var daySelectValue = "";
 var timeSelectValue = "";
 var inputBoxValue = "";
-var dayName = "";
-
-
+var dayName = "sunday";
+var dayScheduleArr = [];
 
 // dom query for #weekDaysContainer & add event listener
 var weekDaysContainer = document.getElementById("weekDaysContainer");
@@ -49,10 +37,12 @@ weekDaysContainer.addEventListener("click", getDay);
 // define function that stores the event.target (day clicked)
 function getDay(event) {
   var targetDay = event.target;
-  var targetDayId = targetDay.getAttribute('id');
+  var targetDayId = targetDay.getAttribute("id");
   var targetDayText = targetDay.textContent;
+  console.log(targetDayText);
 
   dayName = targetDayId;
+  tableBody.textContent = "";
   addTableEntry();
 
   // console.log('event.target:', targetDay)
@@ -66,62 +56,75 @@ function getDay(event) {
   }
 }
 
-
-
 //----------new entry--------
 
 function enterNewData() {
-  weekDaysArray.daySelectValue.push({
+  weekDaysArray[daySelectValue].push({
     time: timeSelectValue,
     description: inputBoxValue,
   });
 }
 
-
 //----------getting data from week array to display on table------
 
+function createDayScheduleArr() {
+  dayScheduleArr = [];
+  for (var i = 0; i < weekDaysArray[dayName].length; i++) {
+    dayScheduleArr.push(weekDaysArray[dayName][i]);
+  }
 
 
-var dayScheduleArr = [];
-for (var i = 0; i < weekDaysArray[dayName].length; i++) {
-  dayScheduleArr.push(weekDaysArray[dayName][i]);
-
-// Dom queries for modal elements
-var daySelect = document.getElementById("daySelect");
-var timeSelect = document.getElementById("timeSelect");
-var inputBox = document.getElementById("inputBox");
-var submitButton = document.getElementById("submitButton");
+}
 
 // Add eventlistener to submitButton.  Define getEntryValues
-submitButton.addEventListener('click', getEntryData);
-function getEntryData(event)  {
+submitButton.addEventListener("click", getEntryData);
+function getEntryData(event) {
+  // Dom queries for modal elements
+  daySelect = document.getElementById("daySelect");
+  timeSelect = document.getElementById("timeSelect");
+  inputBox = document.getElementById("descriptionSelect");
+  var submitButton = document.getElementById("submitButton");
+
   // Storing the text values of modal input elements
   daySelectValue = daySelect.options[daySelect.selectedIndex].value;
   timeSelectValue = timeSelect.options[timeSelect.selectedIndex].textContent;
   inputBoxValue = inputBox.value;
+  enterNewData();
+
+  //------- resetting values and hiding modal
+
+  containerModal.classList.add("hidden");
+  daySelectValue = ""
+  timeSelectValue = ""
+  inputBox.value = ""
+
+
   // ↓↓ Code for pushing to weekDaysArray and appending to table goes below? ↓↓
   // not sure if this is right
-  getDay(event);
+  // getDay(event);
 }
 
 //Function to dynamically create tr and td
 function addTableEntry() {
-  var tableBody = document.getElementById('tableBody');
-  var tableRow = document.createElement('tr');
-  var tableDataTime = document.createElement('td');
-  var tableDataTask = document.createElement('td');
+  createDayScheduleArr();
+  for (var i = 0; i < dayScheduleArr.length; i++) {
+    var tableRow = document.createElement("tr");
+    var tableDataTime = document.createElement("td");
+    var tableDataTask = document.createElement("td");
 
-  tableDataTime.textContent = dayScheduleArr[dayName].time;
-  tableDataTask.textContent = dayScheduleArr[dayName].description;
-  tableRow.append(tableDataTime, tableDataTask);
-  tableBody.append(tableRow);
+    tableDataTime.textContent = dayScheduleArr[i].time;
+    tableDataTask.textContent = dayScheduleArr[i].description;
+    tableRow.append(tableDataTime, tableDataTask);
+    tableBody.append(tableRow);
+  }
+}
 
-console.log(addEntryBtn);
 addEntryBtn.addEventListener("click", openModal);
 // add event listener to button to open the modal
 function openModal(event) {
-  var containerModal = document.querySelector(".containerModal");
-  containerModal.classList.remove("class", "hidden");
 
-
+  containerModal.classList.remove("hidden");
+  var tempTimeSelect = document.querySelector("#timeSelect")
+  var tempTimeSelectVal = tempTimeSelect.options[tempTimeSelect.selectedIndex];
+  console.log(tempTimeSelectVal)
 }
