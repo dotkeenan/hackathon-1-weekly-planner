@@ -21,6 +21,7 @@ body {
   box-shadow: 2px 2px;
   outline: none;
 }
+
 #addEntryBtn:hover {
   background-color: rgb(235, 235, 235);
 }
