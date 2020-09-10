@@ -202,3 +202,19 @@ function getDay(event) {
     return targetDayText;
   }
 }
+
+// Dom queries for modal elements
+var daySelect = document.getElementById("daySelect");
+var timeSelect = document.getElementById("timeSelect");
+var inputBox = document.getElementById("inputBox");
+var submitButton = document.getElementById("submitButton");
+
+// Add eventlistener to submitButton.  Define getEntryValues
+submitButton.addEventListener('click', getEntryData);
+function getEntryData(event)  {
+  // Storing the text values of modal input elements
+  var daySelectValue = daySelect.options[daySelect.selectedIndex].textContent;
+  var timeSelectValue = timeSelect.options[timeSelect.selectedIndex].textContent;
+  var inputBoxValue = inputBox.value;
+  // ↓↓ Code for pushing to weekDaysArray and appending to table goes below? ↓↓
+}
