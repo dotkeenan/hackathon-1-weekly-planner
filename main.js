@@ -12,7 +12,7 @@ var weekDaysArray = {
 
   monday: [],
   tuesday: [],
-  wednsday: [],
+  wednesday: [],
   thursday: [],
   friday: [],
   saturday: [],
@@ -94,10 +94,9 @@ function getEntryData(event) {
   //------- resetting values and hiding modal
 
   containerModal.classList.add("hidden");
-  daySelectValue = ""
-  timeSelectValue = ""
-  inputBox.value = ""
-
+  daySelect.selectedIndex = 0;
+  timeSelect.selectedIndex = 0;
+  inputBox.value = "";
 
   // ↓↓ Code for pushing to weekDaysArray and appending to table goes below? ↓↓
   // not sure if this is right
@@ -124,7 +123,4 @@ addEntryBtn.addEventListener("click", openModal);
 function openModal(event) {
 
   containerModal.classList.remove("hidden");
-  var tempTimeSelect = document.querySelector("#timeSelect")
-  var tempTimeSelectVal = tempTimeSelect.options[tempTimeSelect.selectedIndex];
-  console.log(tempTimeSelectVal)
 }
