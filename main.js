@@ -37,7 +37,7 @@ var timeSelectValue = "";
 var inputBoxValue = "";
 var dayName = "sunday";
 var dayScheduleArr = [];
-var dayScheduleIndex = 0;
+var dayScheduleIndex = "";
 
 // dom query for #weekDaysContainer & add event listener
 var weekDaysContainer = document.getElementById("weekDaysContainer");
@@ -107,41 +107,51 @@ function getEntryData(event) {
   daySelect.selectedIndex = 0;
   timeSelect.selectedIndex = 0;
   inputBox.value = "";
-
-  // ↓↓ Code for pushing to weekDaysData and appending to table goes below? ↓↓
-  // not sure if this is right
-  // getDay(event);
 }
 
 //Function to dynamically create tr and td
 function addTableEntry() {
   tableBody.textContent = "";
   createDayScheduleArr();
-  for (var i = 0; i < dayScheduleArr.length; i++) {
+  for (var i = 0; i < weekDaysData[daySelectValue].length; i++) {
     var tableRow = document.createElement("tr");
+    tableRow.setAttribute('data-index', i);
+
     var tableDataTime = document.createElement("td");
     var tableDataTask = document.createElement("td");
     tableDataTask.classList.add("tableDataTask");
+    tableDataTime.textContent = weekDaysData[daySelectValue][i].time;
+    tableDataTask.textContent = weekDaysData[daySelectValue][i].description;
+
     var tableDataUpdateBtn = document.createElement("button");
     tableDataUpdateBtn.innerText = "Update";
     tableDataUpdateBtn.classList.add("updateBtn");
     tableDataUpdateBtn.addEventListener("click", updateModal);
-    tableDataTime.textContent = dayScheduleArr[i].time;
-    tableDataTask.textContent = dayScheduleArr[i].description;
+
     tableDataTask.append(tableDataUpdateBtn);
     tableRow.append(tableDataTime, tableDataTask);
     tableBody.append(tableRow);
   }
 }
 
-addEntryBtn.addEventListener("click", openModal);
+addEntryBtn.addEventListener("click", function(){
+  var updateBtnTarget = event.target;
+  console.log(event);
+  containerModal.classList.remove("hidden");
+});
 // add event listener to button to open the modal
+
 function openModal(event) {
+  console.log(event);
   containerModal.classList.remove("hidden");
 }
 
 
-function updateModal()  {
+function updateModal(event)  {
+  var tempEventTarget = event.target;
+  var updateBtnTargetParent = tempEventTarget.parentElement;
+  var rowTempElement = updateBtnTargetParent.parentElement;
+  dayScheduleIndex = rowTempElement.getAttribute('data-index');
   openModal();
   modalH1.textContent = "Update Entry";
   submitButton.removeEventListener("click", getEntryData)
@@ -150,6 +160,10 @@ function updateModal()  {
 }
 
 function updateEntry() {
+  daySelect = document.getElementById("daySelect");
+  timeSelect = document.getElementById("timeSelect");
+  inputBox = document.getElementById("descriptionSelect");
+
   daySelectValue = daySelect.options[daySelect.selectedIndex].value;
   timeSelectValue = timeSelect.options[timeSelect.selectedIndex].textContent;
   inputBoxValue = inputBox.value;
@@ -158,4 +172,17 @@ function updateEntry() {
 
   addTableEntry();
   containerModal.classList.add("hidden");
+
+  daySelect.selectedIndex = 0;
+  timeSelect.selectedIndex = 0;
+  inputBox.value = "";
 }
+
+function pageLoad() {
+  // dayName = targetDayId;
+  selectedDayHeading.textContent = "Scheduled Events for Sunday" ;
+  tableBody.textContent = "";
+  // addTableEntry();
+}
+
+pageLoad()
