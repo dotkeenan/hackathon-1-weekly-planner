@@ -147,7 +147,9 @@ function addTableEntry() {
     var tableDataDeleteBtn = document.createElement("button");
     tableDataDeleteBtn.innerText = "Delete";
     tableDataDeleteBtn.classList.add('deleteBtn');
-    tableDataDeleteBtn.addEventListener("click", removeHidden);
+    tableDataDeleteBtn.addEventListener("click", function() {
+      deleteModal.classList.remove('hidden');
+    });
 
     var deleteModalYes = document.getElementById('deleteModalYes');
     var deleteModalNo = document.getElementById('deleteModalNo');
@@ -217,5 +219,6 @@ function updateEntry() {
 
 function deleteEntry() {
   weekDaysData[daySelectValue].splice(dayScheduleIndex, 1);
-
+  deleteModal.classList.add('hidden');
+  addTableEntry();
 }
