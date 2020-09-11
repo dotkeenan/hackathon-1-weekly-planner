@@ -57,27 +57,30 @@ pageLoad();
 weekDaysContainer.addEventListener("click", getDay);
 // define function that stores the event.target (day clicked)
 function getDay(event) {
-  console.log(event);
+  // console.log(event);
   var targetDay = event.target;
-  console.log(event.target);
+  // console.log(event.target);
   var targetDayId = targetDay.getAttribute("id");
-  console.log(targetDayId);
+  // console.log(targetDayId);
   var targetDayText = targetDay.textContent;
   console.log(targetDayText);
+
+  var targetDayFirstChildText = targetDay.firstChild.textContent;
 
   daySelectValue = targetDayId;
 
   dayName = targetDayId;
-  tableBody.textContent = "";
-  addTableEntry();
+
 
   // console.log('event.target:', targetDay)
   // Exclude clicks that aren't on the actual .dayItem's
   if (event.target.className.indexOf("dayItem") === -1) {
     return;
   } else {
-    selectedDayHeading.textContent = "Scheduled Events for " + targetDayText;
+    selectedDayHeading.textContent = "Scheduled Events for " + targetDayFirstChildText;
     // console.log('targetDay textContent:', targetDayText);
+    tableBody.textContent = "";
+    addTableEntry();
     return targetDayText;
   }
 }

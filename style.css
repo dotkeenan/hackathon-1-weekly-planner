@@ -36,7 +36,7 @@ body {
   /* border: 2px solid red; */
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   margin-bottom: 20px;
 }
@@ -110,8 +110,7 @@ th {
   position: absolute;
   left: 50%;
   top: 50%;
-  margin-left: -300px;
-  margin-top: -140px;
+  transform: translate(-50%, -50%);
   background-color: white;
   padding: 0.5rem;
   text-align: center;
