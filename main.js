@@ -39,6 +39,7 @@ var dayName = "sunday";
 var dayScheduleArr = [];
 var dayScheduleIndex = "";
 
+
 // dom query for #weekDaysContainer & add event listener
 var weekDaysContainer = document.getElementById("weekDaysContainer");
 var selectedDayHeading = document.getElementById("selectedDayHeading");
@@ -171,6 +172,10 @@ function updateModal(event) {
   modalH1.textContent = "Update Entry";
   submitButton.removeEventListener("click", getEntryData);
   submitButton.addEventListener("click", updateEntry);
+
+  inputBox.value = weekDaysData[daySelectValue][dayScheduleIndex].description;
+  timeSelect.value = weekDaysData[daySelectValue][dayScheduleIndex].time;
+  daySelect.value = daySelectValue
 }
 
 function updateEntry() {
@@ -190,4 +195,10 @@ function updateEntry() {
   daySelect.selectedIndex = 0;
   timeSelect.selectedIndex = 0;
   inputBox.value = "";
+}
+
+
+function deleteEntry() {
+  weekDaysData[daySelectValue].splice(dayScheduleIndex, 1);
+
 }
