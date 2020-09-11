@@ -23,9 +23,9 @@ var containerModal = document.querySelector(".containerModal");
 var inputBox = "";
 var daySelect = "";
 var timeSelect = "";
-var daySelectValue = "";
-var timeSelectValue = "";
-var inputBoxValue = "";
+var daySelectValue = "sunday";
+var timeSelectValue = "20:00";
+var inputBoxValue = "hello";
 var dayName = "sunday";
 var dayScheduleArr = [];
 
@@ -33,6 +33,8 @@ var dayScheduleArr = [];
 var weekDaysContainer = document.getElementById("weekDaysContainer");
 var selectedDayHeading = document.getElementById("selectedDayHeading");
 var addEntryBtn = document.getElementById("addEntryBtn");
+var modalH1 = document.getElementById('modalH1');
+
 weekDaysContainer.addEventListener("click", getDay);
 // define function that stores the event.target (day clicked)
 function getDay(event) {
@@ -72,8 +74,6 @@ function createDayScheduleArr() {
   for (var i = 0; i < weekDaysArray[dayName].length; i++) {
     dayScheduleArr.push(weekDaysArray[dayName][i]);
   }
-
-
 }
 
 // Add eventlistener to submitButton.  Define getEntryValues
@@ -90,7 +90,7 @@ function getEntryData(event) {
   timeSelectValue = timeSelect.options[timeSelect.selectedIndex].textContent;
   inputBoxValue = inputBox.value;
   enterNewData();
-
+  addTableEntry();
   //------- resetting values and hiding modal
 
   containerModal.classList.add("hidden");
@@ -105,6 +105,7 @@ function getEntryData(event) {
 
 //Function to dynamically create tr and td
 function addTableEntry() {
+  tableBody.textContent = "";
   createDayScheduleArr();
   for (var i = 0; i < dayScheduleArr.length; i++) {
     var tableRow = document.createElement("tr");
@@ -121,6 +122,29 @@ function addTableEntry() {
 addEntryBtn.addEventListener("click", openModal);
 // add event listener to button to open the modal
 function openModal(event) {
-
   containerModal.classList.remove("hidden");
+}
+
+// Zach is going to put this eventListener on all created updateBtn's
+// updateBtn.addEventListener('click', updateModal);
+
+function updateModal()  {
+  containerModal.classList.remove("hidden");
+  modalH1.textContent = "Update Entry";
+  submitButton.removeEventListener("click", getEntryData)
+  submitButton.addEventListener("click", updateEntry);
+  containerModal.classList.add("hidden");
+  addTableEntry();
+}
+
+function updateEntry() {
+  for (var i = 0; i < weekDaysArray[daySelectValue].length; i++) {
+    if (weekDaysArray[daySelectValue][i].time === timeSelectValue) {
+      weekDaysArray[daySelectValue][i].description = inputBoxValue;
+    } else if (weekDaysArray[daySelectValue][i].description === inputBoxValue) {
+      weekDaysArray[daySelectValue][i].time = timeSelectValue;
+    } else {
+      // enterNewData();
+    }
+  }
 }
