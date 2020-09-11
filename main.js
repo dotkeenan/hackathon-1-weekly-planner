@@ -198,3 +198,9 @@ function updateEntry() {
   timeSelect.selectedIndex = 0;
   inputBox.value = "";
 }
+
+
+function deleteEntry() {
+  weekDaysData[daySelectValue].splice(dayScheduleIndex, 1);
+
+}
