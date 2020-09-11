@@ -1,4 +1,4 @@
-var weekDaysArray = {
+var weekDaysData = {
   sunday: [
     {
       time: "10:00",
@@ -10,7 +10,16 @@ var weekDaysArray = {
     },
   ],
 
-  monday: [],
+  monday: [
+    {
+      time: "18:00",
+      description: "very important meeting",
+    },
+    {
+      time: "22:00",
+      description: "the task",
+    },
+  ],
   tuesday: [],
   wednesday: [],
   thursday: [],
@@ -19,15 +28,16 @@ var weekDaysArray = {
 };
 
 var tableBody = document.getElementById("tableBody");
-var submitModal = document.querySelector("#submitModal");
+var containerModal = document.querySelector(".containerModal");
 var inputBox = "";
 var daySelect = "";
 var timeSelect = "";
 var daySelectValue = "sunday";
-var timeSelectValue = "20:00";
-var inputBoxValue = "hello";
+var timeSelectValue = "";
+var inputBoxValue = "";
 var dayName = "sunday";
 var dayScheduleArr = [];
+var dayScheduleIndex = 0;
 
 // dom query for #weekDaysContainer & add event listener
 var weekDaysContainer = document.getElementById("weekDaysContainer");
@@ -61,7 +71,7 @@ function getDay(event) {
 //----------new entry--------
 
 function enterNewData() {
-  weekDaysArray[daySelectValue].push({
+  weekDaysData[daySelectValue].push({
     time: timeSelectValue,
     description: inputBoxValue,
   });
@@ -71,8 +81,8 @@ function enterNewData() {
 
 function createDayScheduleArr() {
   dayScheduleArr = [];
-  for (var i = 0; i < weekDaysArray[dayName].length; i++) {
-    dayScheduleArr.push(weekDaysArray[dayName][i]);
+  for (var i = 0; i < weekDaysData[dayName].length; i++) {
+    dayScheduleArr.push(weekDaysData[dayName][i]);
   }
 }
 
@@ -93,12 +103,12 @@ function getEntryData(event) {
   addTableEntry();
   //------- resetting values and hiding modal
 
-  submitModal.classList.add("hidden");
+  containerModal.classList.add("hidden");
   daySelect.selectedIndex = 0;
   timeSelect.selectedIndex = 0;
   inputBox.value = "";
 
-  // ↓↓ Code for pushing to weekDaysArray and appending to table goes below? ↓↓
+  // ↓↓ Code for pushing to weekDaysData and appending to table goes below? ↓↓
   // not sure if this is right
   // getDay(event);
 }
@@ -111,7 +121,7 @@ function addTableEntry() {
     var tableRow = document.createElement("tr");
     var tableDataTime = document.createElement("td");
     var tableDataTask = document.createElement("td");
-    tableDataTask.setAttribute("class", "tableDataTask");
+    tableDataTask.classList.add("tableDataTask");
     var tableDataUpdateBtn = document.createElement("button");
     tableDataUpdateBtn.innerText = "Update";
     tableDataUpdateBtn.classList.add("updateBtn");
@@ -132,22 +142,20 @@ function openModal(event) {
 
 
 function updateModal()  {
-  containerModal.classList.remove("hidden");
+  openModal();
   modalH1.textContent = "Update Entry";
   submitButton.removeEventListener("click", getEntryData)
   submitButton.addEventListener("click", updateEntry);
-  containerModal.classList.add("hidden");
-  addTableEntry();
+
 }
 
 function updateEntry() {
-  for (var i = 0; i < weekDaysArray[daySelectValue].length; i++) {
-    if (weekDaysArray[daySelectValue][i].time === timeSelectValue) {
-      weekDaysArray[daySelectValue][i].description = inputBoxValue;
-    } else if (weekDaysArray[daySelectValue][i].description === inputBoxValue) {
-      weekDaysArray[daySelectValue][i].time = timeSelectValue;
-    } else {
-      // enterNewData();
-    }
-  }
+  daySelectValue = daySelect.options[daySelect.selectedIndex].value;
+  timeSelectValue = timeSelect.options[timeSelect.selectedIndex].textContent;
+  inputBoxValue = inputBox.value;
+  weekDaysData[daySelectValue][dayScheduleIndex].description = inputBoxValue;
+  weekDaysData[daySelectValue][dayScheduleIndex].time = timeSelectValue;
+
+  addTableEntry();
+  containerModal.classList.add("hidden");
 }
