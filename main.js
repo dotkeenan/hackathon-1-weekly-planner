@@ -45,13 +45,28 @@ var selectedDayHeading = document.getElementById("selectedDayHeading");
 var addEntryBtn = document.getElementById("addEntryBtn");
 var modalH1 = document.getElementById('modalH1');
 
+
+function pageLoad() {
+  selectedDayHeading.textContent = "Scheduled Events for Sunday";
+  tableBody.textContent = "";
+  addTableEntry();
+}
+
+pageLoad();
+
+
 weekDaysContainer.addEventListener("click", getDay);
 // define function that stores the event.target (day clicked)
 function getDay(event) {
+  console.log(event)
   var targetDay = event.target;
+  console.log(event.target)
   var targetDayId = targetDay.getAttribute("id");
+  console.log(targetDayId)
   var targetDayText = targetDay.textContent;
   console.log(targetDayText);
+
+  daySelectValue = targetDayId;;
 
   dayName = targetDayId;
   tableBody.textContent = "";
@@ -177,12 +192,3 @@ function updateEntry() {
   timeSelect.selectedIndex = 0;
   inputBox.value = "";
 }
-
-function pageLoad() {
-  // dayName = targetDayId;
-  selectedDayHeading.textContent = "Scheduled Events for Sunday" ;
-  tableBody.textContent = "";
-  // addTableEntry();
-}
-
-pageLoad()
