@@ -23,9 +23,9 @@ var submitModal = document.querySelector("#submitModal");
 var inputBox = "";
 var daySelect = "";
 var timeSelect = "";
-var daySelectValue = "";
-var timeSelectValue = "";
-var inputBoxValue = "";
+var daySelectValue = "sunday";
+var timeSelectValue = "20:00";
+var inputBoxValue = "hello";
 var dayName = "sunday";
 var dayScheduleArr = [];
 
@@ -33,6 +33,8 @@ var dayScheduleArr = [];
 var weekDaysContainer = document.getElementById("weekDaysContainer");
 var selectedDayHeading = document.getElementById("selectedDayHeading");
 var addEntryBtn = document.getElementById("addEntryBtn");
+var modalH1 = document.getElementById('modalH1');
+
 weekDaysContainer.addEventListener("click", getDay);
 // define function that stores the event.target (day clicked)
 function getDay(event) {
@@ -89,7 +91,6 @@ function getEntryData(event) {
   inputBoxValue = inputBox.value;
   enterNewData();
   addTableEntry();
-
   //------- resetting values and hiding modal
 
   submitModal.classList.add("hidden");
@@ -113,7 +114,7 @@ function addTableEntry() {
     tableDataTask.setAttribute("class", "tableDataTask");
     var tableDataUpdateBtn = document.createElement("button");
     tableDataUpdateBtn.innerText = "Update";
-    tableDataUpdateBtn.setAttribute("class", "updateBtn");
+    tableDataUpdateBtn.classList.add("updateBtn");
     tableDataUpdateBtn.addEventListener("click", updateModal);
     tableDataTime.textContent = dayScheduleArr[i].time;
     tableDataTask.textContent = dayScheduleArr[i].description;
@@ -126,5 +127,27 @@ function addTableEntry() {
 addEntryBtn.addEventListener("click", openModal);
 // add event listener to button to open the modal
 function openModal(event) {
-  submitModal.classList.remove("hidden");
+  containerModal.classList.remove("hidden");
+}
+
+
+function updateModal()  {
+  containerModal.classList.remove("hidden");
+  modalH1.textContent = "Update Entry";
+  submitButton.removeEventListener("click", getEntryData)
+  submitButton.addEventListener("click", updateEntry);
+  containerModal.classList.add("hidden");
+  addTableEntry();
+}
+
+function updateEntry() {
+  for (var i = 0; i < weekDaysArray[daySelectValue].length; i++) {
+    if (weekDaysArray[daySelectValue][i].time === timeSelectValue) {
+      weekDaysArray[daySelectValue][i].description = inputBoxValue;
+    } else if (weekDaysArray[daySelectValue][i].description === inputBoxValue) {
+      weekDaysArray[daySelectValue][i].time = timeSelectValue;
+    } else {
+      // enterNewData();
+    }
+  }
 }
