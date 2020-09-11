@@ -19,7 +19,7 @@ var weekDaysArray = {
 };
 
 var tableBody = document.getElementById("tableBody");
-var containerModal = document.querySelector(".containerModal");
+var submitModal = document.querySelector("#submitModal");
 var inputBox = "";
 var daySelect = "";
 var timeSelect = "";
@@ -93,7 +93,7 @@ function getEntryData(event) {
   addTableEntry();
   //------- resetting values and hiding modal
 
-  containerModal.classList.add("hidden");
+  submitModal.classList.add("hidden");
   daySelect.selectedIndex = 0;
   timeSelect.selectedIndex = 0;
   inputBox.value = "";
@@ -111,9 +111,14 @@ function addTableEntry() {
     var tableRow = document.createElement("tr");
     var tableDataTime = document.createElement("td");
     var tableDataTask = document.createElement("td");
-
+    tableDataTask.setAttribute("class", "tableDataTask");
+    var tableDataUpdateBtn = document.createElement("button");
+    tableDataUpdateBtn.innerText = "Update";
+    tableDataUpdateBtn.classList.add("updateBtn");
+    tableDataUpdateBtn.addEventListener("click", updateModal);
     tableDataTime.textContent = dayScheduleArr[i].time;
     tableDataTask.textContent = dayScheduleArr[i].description;
+    tableDataTask.append(tableDataUpdateBtn);
     tableRow.append(tableDataTime, tableDataTask);
     tableBody.append(tableRow);
   }
@@ -125,8 +130,6 @@ function openModal(event) {
   containerModal.classList.remove("hidden");
 }
 
-// Zach is going to put this eventListener on all created updateBtn's
-// updateBtn.addEventListener('click', updateModal);
 
 function updateModal()  {
   containerModal.classList.remove("hidden");
