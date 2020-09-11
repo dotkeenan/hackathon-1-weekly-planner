@@ -48,6 +48,13 @@ body {
   height: 105px;
   line-height: 105px;
 }
+
+.dayItem:hover  {
+  cursor: pointer;
+  background-color: rgb(142, 187, 224);
+  box-shadow: 1px 1px;
+}
+
 table,
 td,
 th {
@@ -125,21 +132,25 @@ th {
 #submitButton:active {
   background-color: rgb(204, 204, 204);
 }
-.hidden {
-  display: none;
-}
-.updateBtn {
-  width: 15%;
-  margin-right: 10%;
+
+.updateBtn, .deleteBtn {
+  /* float:right; */
+  width: 80px;
+  margin-right: 10px;
   padding: 0.2rem 1rem;
   border-radius: 2px;
   background-color: white;
   outline: none;
 }
-.updateBtn:hover {
+
+.updateBtn:hover, .deleteBtn:hover {
   background-color: rgb(142, 187, 224);
   box-shadow: 1px 1px;
 }
 .updateBtn:active {
   background-color: rgb(204, 204, 204);
+}
+
+.hidden {
+  display: none;
 }

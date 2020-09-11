@@ -139,12 +139,27 @@ function addTableEntry() {
     tableDataTime.textContent = weekDaysData[daySelectValue][i].time;
     tableDataTask.textContent = weekDaysData[daySelectValue][i].description;
 
+    var buttonDiv = document.createElement("div");
+
     var tableDataUpdateBtn = document.createElement("button");
     tableDataUpdateBtn.innerText = "Update";
     tableDataUpdateBtn.classList.add("updateBtn");
     tableDataUpdateBtn.addEventListener("click", updateModal);
 
-    tableDataTask.append(tableDataUpdateBtn);
+    var tableDataDeleteBtn = document.createElement("button");
+    tableDataDeleteBtn.innerText = "Delete";
+    tableDataDeleteBtn.classList.add('deleteBtn');
+    tableDataDeleteBtn.addEventListener("click", removeHidden);
+
+    var deleteModalYes = document.getElementById('deleteModalYes');
+    var deleteModalNo = document.getElementById('deleteModalNo');
+    deleteModalYes.addEventListener('click', deleteEntry);
+    deleteModalNo.addEventListener('click', function()  {
+      deleteModal.classList.add('hidden');
+    });
+
+    buttonDiv.append(tableDataUpdateBtn, tableDataDeleteBtn)
+    tableDataTask.append(buttonDiv);
     tableRow.append(tableDataTime, tableDataTask);
     tableBody.append(tableRow);
   }
@@ -165,11 +180,11 @@ function openModal(event) {
   containerModal.classList.remove("hidden");
 }
 
-
 function updateModal(event)  {
   var tempEventTarget = event.target;
   var updateBtnTargetParent = tempEventTarget.parentElement;
-  var rowTempElement = updateBtnTargetParent.parentElement;
+  var divElementParent = updateBtnTargetParent.parentElement;
+  var rowTempElement = divElementParent.parentElement;
   dayScheduleIndex = rowTempElement.getAttribute('data-index');
   openModal();
   modalH1.textContent = "Update Entry";
@@ -177,7 +192,7 @@ function updateModal(event)  {
   submitButton.addEventListener("click", updateEntry);
   inputBox.value = weekDaysData[daySelectValue][dayScheduleIndex].description;
   timeSelect.value = weekDaysData[daySelectValue][dayScheduleIndex].time;
-  daySelect.value = daySelectValue
+  daySelect.value = daySelectValue;
 }
 
 function updateEntry() {
