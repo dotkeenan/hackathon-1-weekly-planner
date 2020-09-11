@@ -163,6 +163,7 @@ function addTableEntry() {
     tableRow.append(tableDataTime, tableDataTask);
     tableBody.append(tableRow);
   }
+  getDayLength();
 }
 
 addEntryBtn.addEventListener("click", function () {
@@ -221,4 +222,15 @@ function deleteEntry() {
   weekDaysData[daySelectValue].splice(dayScheduleIndex, 1);
   deleteModal.classList.add('hidden');
   addTableEntry();
+}
+
+
+function getDayLength(){
+  sundayCount.textContent = weekDaysData["sunday"].length;
+  mondayCount.textContent = weekDaysData["monday"].length;
+  tuesdayCount.textContent = weekDaysData["tuesday"].length;
+  wednesdayCount.textContent = weekDaysData["wednesday"].length;
+  thursdayCount.textContent = weekDaysData["thursday"].length;
+  fridayCount.textContent = weekDaysData["friday"].length;
+  saturdayCount.textContent = weekDaysData["saturday"].length;
 }
