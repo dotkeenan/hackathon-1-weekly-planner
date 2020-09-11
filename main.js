@@ -153,6 +153,9 @@ addEntryBtn.addEventListener("click", function(){
   var updateBtnTarget = event.target;
   console.log(event);
   containerModal.classList.remove("hidden");
+  modalH1.textContent = "Add Entry";
+  submitButton.removeEventListener("click", updateEntry)
+  submitButton.addEventListener("click", getEntryData);
 });
 // add event listener to button to open the modal
 
