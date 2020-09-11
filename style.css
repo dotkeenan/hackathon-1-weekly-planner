@@ -25,6 +25,7 @@ body {
 #addEntryBtn:hover {
   background-color: rgb(142, 187, 224);
   box-shadow: 2px 2px;
+  cursor: pointer;
 }
 #addEntryBtn:active {
   background-color: rgb(204, 204, 204);
@@ -47,6 +48,15 @@ body {
   width: 105px;
   height: 105px;
   line-height: 105px;
+}
+.dayItem:hover {
+  background-color: rgb(142, 187, 224);
+  cursor: pointer;
+  box-shadow: 2px 2px;
+}
+.dayItem:active {
+  cursor: auto;
+  background-color: rgb(204, 204, 204);
 }
 table,
 td,
@@ -82,7 +92,7 @@ th {
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.4);
 }
-.addEntryModal {
+.modal {
   width: 600px;
   height: 280px;
   position: absolute;
@@ -93,6 +103,7 @@ th {
   background-color: white;
   padding: 0.5rem;
   text-align: center;
+  border: 3px solid black;
 }
 .divInModal {
   display: flex;
@@ -105,6 +116,7 @@ th {
   border-radius: 2px;
   font-weight: 700;
   margin-right: 2rem;
+  cursor: pointer;
 }
 .containerModal button {
   padding: 0.2rem 1rem;
@@ -121,9 +133,11 @@ th {
 }
 #submitButton:hover {
   background-color: rgb(142, 187, 224);
+  cursor: pointer;
 }
 #submitButton:active {
   background-color: rgb(204, 204, 204);
+  cursor: auto;
 }
 .hidden {
   display: none;
@@ -139,7 +153,33 @@ th {
 .updateBtn:hover {
   background-color: rgb(142, 187, 224);
   box-shadow: 1px 1px;
+  cursor: pointer;
 }
 .updateBtn:active {
   background-color: rgb(204, 204, 204);
+}
+#deleteModal > div {
+  display: flex;
+  flex-direction: column;
+}
+.buttonsDiv {
+  display: flex;
+  justify-content: space-evenly;
+}
+#deleteModal > .modal {
+  width: 500px;
+  height: 200px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -250px;
+  margin-top: -150px;
+}
+.deleteButton:hover {
+  background-color: rgb(142, 187, 224);
+  cursor: pointer;
+}
+.deleteButton:active {
+  background-color: rgb(204, 204, 204);
+  cursor: auto;
 }
