@@ -18,12 +18,13 @@ body {
   font-weight: 700;
   margin: 1rem;
   background-color: white;
-  box-shadow: 2px 2px;
+  box-shadow: 1px 1px;
   outline: none;
 }
 
 #addEntryBtn:hover {
-  background-color: rgb(235, 235, 235);
+  background-color: rgb(142, 187, 224);
+  box-shadow: 2px 2px;
 }
 #addEntryBtn:active {
   background-color: rgb(204, 204, 204);
@@ -66,6 +67,10 @@ tr:nth-child(odd) {
 td,
 th {
   padding: 2px;
+}
+.tableDataTask {
+  display: flex;
+  justify-content: space-between;
 }
 .containerModal {
   position: fixed;
@@ -115,11 +120,26 @@ th {
   border: 2px solid black;
 }
 #submitButton:hover {
-  background-color: rgb(235, 235, 235);
+  background-color: rgb(142, 187, 224);
 }
 #submitButton:active {
   background-color: rgb(204, 204, 204);
 }
 .hidden {
   display: none;
+}
+.updateBtn {
+  width: 15%;
+  margin-right: 10%;
+  padding: 0.2rem 1rem;
+  border-radius: 2px;
+  background-color: white;
+  outline: none;
+}
+.updateBtn:hover {
+  background-color: rgb(142, 187, 224);
+  box-shadow: 1px 1px;
+}
+.updateBtn:active {
+  background-color: rgb(204, 204, 204);
 }

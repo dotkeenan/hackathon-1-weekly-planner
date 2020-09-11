@@ -37,15 +37,14 @@
 
           <tbody id="tableBody">
             <!-- dynamically create tr and td -->
-
           </tbody>
         </table>
       </div>
     </div>
 
-    <div class="containerModal container hidden">
+    <div id="submitModal" class="containerModal container hidden">
       <div class="addEntryModal">
-        <h1>Add Entry</h1>
+        <h1></h1>
         <div class="DivInModal">
           <select name="Day" id="daySelect">
             <option value="none" selected disabled hidden>Day</option>
@@ -58,7 +57,9 @@
             <option value="saturday">Saturday</option>
           </select>
           <select name="Time" id="timeSelect">
-            <option id="timeNone" value="none" selected disabled hidden>Time</option>
+            <option id="timeNone" value="none" selected disabled hidden>
+              Time
+            </option>
             <option value="00:00">00:00</option>
             <option value="01:00">01:00</option>
             <option value="02:00">02:00</option>

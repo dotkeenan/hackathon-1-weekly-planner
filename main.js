@@ -19,7 +19,7 @@ var weekDaysArray = {
 };
 
 var tableBody = document.getElementById("tableBody");
-var containerModal = document.querySelector(".containerModal");
+var submitModal = document.querySelector("#submitModal");
 var inputBox = "";
 var daySelect = "";
 var timeSelect = "";
@@ -72,8 +72,6 @@ function createDayScheduleArr() {
   for (var i = 0; i < weekDaysArray[dayName].length; i++) {
     dayScheduleArr.push(weekDaysArray[dayName][i]);
   }
-
-
 }
 
 // Add eventlistener to submitButton.  Define getEntryValues
@@ -90,10 +88,11 @@ function getEntryData(event) {
   timeSelectValue = timeSelect.options[timeSelect.selectedIndex].textContent;
   inputBoxValue = inputBox.value;
   enterNewData();
+  addTableEntry();
 
   //------- resetting values and hiding modal
 
-  containerModal.classList.add("hidden");
+  submitModal.classList.add("hidden");
   daySelect.selectedIndex = 0;
   timeSelect.selectedIndex = 0;
   inputBox.value = "";
@@ -105,14 +104,20 @@ function getEntryData(event) {
 
 //Function to dynamically create tr and td
 function addTableEntry() {
+  tableBody.textContent = "";
   createDayScheduleArr();
   for (var i = 0; i < dayScheduleArr.length; i++) {
     var tableRow = document.createElement("tr");
     var tableDataTime = document.createElement("td");
     var tableDataTask = document.createElement("td");
-
+    tableDataTask.setAttribute("class", "tableDataTask");
+    var tableDataUpdateBtn = document.createElement("button");
+    tableDataUpdateBtn.innerText = "Update";
+    tableDataUpdateBtn.setAttribute("class", "updateBtn");
+    tableDataUpdateBtn.addEventListener("click", updateModal);
     tableDataTime.textContent = dayScheduleArr[i].time;
     tableDataTask.textContent = dayScheduleArr[i].description;
+    tableDataTask.append(tableDataUpdateBtn);
     tableRow.append(tableDataTime, tableDataTask);
     tableBody.append(tableRow);
   }
@@ -121,6 +126,5 @@ function addTableEntry() {
 addEntryBtn.addEventListener("click", openModal);
 // add event listener to button to open the modal
 function openModal(event) {
-
-  containerModal.classList.remove("hidden");
+  submitModal.classList.remove("hidden");
 }
