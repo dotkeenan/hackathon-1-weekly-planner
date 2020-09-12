@@ -28,7 +28,7 @@ var weekDaysData = {
 };
 
 var tableBody = document.getElementById("tableBody");
-var containerModal = document.querySelector(".containerModal");
+var containerModal = document.querySelector(".modalContainer");
 var inputBox = "";
 var daySelect = "";
 var timeSelect = "";
@@ -62,10 +62,12 @@ addEntryBtn.addEventListener("click", function () {
 
 function pageLoad() {
   addTableEntries();
+
 }
 pageLoad();
 
 function getDay(event) {
+
   if (event.target.className.indexOf("dayItem") === -1) {
     return;
   } else {
@@ -78,6 +80,7 @@ function getDay(event) {
     dayName = targetDayId;
     selectedDayHeading.textContent = "Scheduled Events for " + targetDayFirstChildText;
     addTableEntries();
+
   }
 }
 
@@ -135,12 +138,14 @@ function addTableEntries() {
 
     var tableDataDeleteBtn = document.createElement("button");
     tableDataDeleteBtn.innerText = "Delete";
+
     tableDataDeleteBtn.classList.add('deleteBtn');
     tableDataDeleteBtn.addEventListener("click", function(){
       deleteModal.classList.remove('hidden');
     })
 
-    buttonDiv.append(tableDataUpdateBtn, tableDataDeleteBtn)
+
+    buttonDiv.append(tableDataUpdateBtn, tableDataDeleteBtn);
     tableDataTask.append(buttonDiv);
     tableRow.append(tableDataTime, tableDataTask);
     tableBody.append(tableRow);
@@ -155,12 +160,13 @@ function openModal(event) {
   containerModal.classList.remove("hidden");
 }
 
+
 function updateModal(event)  {
   var tempEventTarget = event.target;
   var updateBtnTargetParent = tempEventTarget.parentElement;
   var divElementParent = updateBtnTargetParent.parentElement;
   var rowTempElement = divElementParent.parentElement;
-  dayScheduleIndex = rowTempElement.getAttribute('data-index');
+  dayScheduleIndex = rowTempElement.getAttribute("data-index");
   openModal();
   modalH1.textContent = "Update Entry";
   submitButton.removeEventListener("click", getEntryData);
@@ -212,11 +218,13 @@ function updateEntry() {
 
 function deleteEntry() {
   weekDaysData[daySelectValue].splice(dayScheduleIndex, 1);
+
   deleteModal.classList.add('hidden');
   addTableEntries();
 }
 
 function getDayLength(){
+
   sundayCount.textContent = weekDaysData["sunday"].length;
   mondayCount.textContent = weekDaysData["monday"].length;
   tuesdayCount.textContent = weekDaysData["tuesday"].length;
