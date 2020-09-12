@@ -38,50 +38,46 @@ var inputBoxValue = "";
 var dayName = "sunday";
 var dayScheduleArr = [];
 var dayScheduleIndex = "";
-
-
-// dom query for #weekDaysContainer & add event listener
+var deleteModalYes = document.getElementById('deleteModalYes');
+var deleteModalNo = document.getElementById('deleteModalNo');
 var weekDaysContainer = document.getElementById("weekDaysContainer");
 var selectedDayHeading = document.getElementById("selectedDayHeading");
 var addEntryBtn = document.getElementById("addEntryBtn");
 var modalH1 = document.getElementById("modalH1");
 
-function pageLoad() {
-  selectedDayHeading.textContent = "Scheduled Events for Sunday";
-  tableBody.textContent = "";
-  addTableEntry();
-}
+submitButton.addEventListener("click", getEntryData);
+weekDaysContainer.addEventListener("click", getDay);
+deleteModalYes.addEventListener('click', deleteEntry);
+deleteModalNo.addEventListener('click', function () {
+  deleteModal.classList.add('hidden');
+});
+addEntryBtn.addEventListener("click", function () {
+  var updateBtnTarget = event.target;
+  console.log(event);
+  containerModal.classList.remove("hidden");
+  modalH1.textContent = "Add Entry";
+  submitButton.removeEventListener("click", updateEntry);
+  submitButton.addEventListener("click", getEntryData);
+});
 
+function pageLoad() {
+  addTableEntries();
+}
 pageLoad();
 
-weekDaysContainer.addEventListener("click", getDay);
-// define function that stores the event.target (day clicked)
 function getDay(event) {
-  // console.log(event);
-  var targetDay = event.target;
-  // console.log(event.target);
-  var targetDayId = targetDay.getAttribute("id");
-  // console.log(targetDayId);
-  var targetDayText = targetDay.textContent;
-  console.log(targetDayText);
-
-  var targetDayFirstChildText = targetDay.firstChild.textContent;
-
-  daySelectValue = targetDayId;
-
-  dayName = targetDayId;
-
-
-  // console.log('event.target:', targetDay)
-  // Exclude clicks that aren't on the actual .dayItem's
   if (event.target.className.indexOf("dayItem") === -1) {
     return;
   } else {
+    var targetDay = event.target;
+    var targetDayId = targetDay.getAttribute("id");
+    var targetDayText = targetDay.textContent;
+    var targetDayFirstChildText = targetDay.firstChild.textContent;
+    console.log(targetDayText);
+    daySelectValue = targetDayId;
+    dayName = targetDayId;
     selectedDayHeading.textContent = "Scheduled Events for " + targetDayFirstChildText;
-    // console.log('targetDay textContent:', targetDayText);
-    tableBody.textContent = "";
-    addTableEntry();
-    return targetDayText;
+    addTableEntries();
   }
 }
 
@@ -94,17 +90,8 @@ function enterNewData() {
   });
 }
 
-//----------getting data from week array to display on table------
-
-function createDayScheduleArr() {
-  dayScheduleArr = [];
-  for (var i = 0; i < weekDaysData[dayName].length; i++) {
-    dayScheduleArr.push(weekDaysData[dayName][i]);
-  }
-}
-
 // Add eventlistener to submitButton.  Define getEntryValues
-submitButton.addEventListener("click", getEntryData);
+
 function getEntryData(event) {
   // Dom queries for modal elements
   daySelect = document.getElementById("daySelect");
@@ -117,7 +104,7 @@ function getEntryData(event) {
   timeSelectValue = timeSelect.options[timeSelect.selectedIndex].textContent;
   inputBoxValue = inputBox.value;
   enterNewData();
-  addTableEntry();
+  addTableEntries();
   //------- resetting values and hiding modal
 
   containerModal.classList.add("hidden");
@@ -127,9 +114,8 @@ function getEntryData(event) {
 }
 
 //Function to dynamically create tr and td
-function addTableEntry() {
+function addTableEntries() {
   tableBody.textContent = "";
-  createDayScheduleArr();
   for (var i = 0; i < weekDaysData[daySelectValue].length; i++) {
     var tableRow = document.createElement("tr");
     tableRow.setAttribute("data-index", i);
@@ -150,16 +136,9 @@ function addTableEntry() {
     var tableDataDeleteBtn = document.createElement("button");
     tableDataDeleteBtn.innerText = "Delete";
     tableDataDeleteBtn.classList.add('deleteBtn');
-    tableDataDeleteBtn.addEventListener("click", function() {
+    tableDataDeleteBtn.addEventListener("click", function(){
       deleteModal.classList.remove('hidden');
-    });
-
-    var deleteModalYes = document.getElementById('deleteModalYes');
-    var deleteModalNo = document.getElementById('deleteModalNo');
-    deleteModalYes.addEventListener('click', deleteEntry);
-    deleteModalNo.addEventListener('click', function()  {
-      deleteModal.classList.add('hidden');
-    });
+    })
 
     buttonDiv.append(tableDataUpdateBtn, tableDataDeleteBtn)
     tableDataTask.append(buttonDiv);
@@ -169,21 +148,12 @@ function addTableEntry() {
   getDayLength();
 }
 
-addEntryBtn.addEventListener("click", function () {
-  var updateBtnTarget = event.target;
-  console.log(event);
-  containerModal.classList.remove("hidden");
-  modalH1.textContent = "Add Entry";
-  submitButton.removeEventListener("click", updateEntry);
-  submitButton.addEventListener("click", getEntryData);
-});
 // add event listener to button to open the modal
 
 function openModal(event) {
   console.log(event);
   containerModal.classList.remove("hidden");
 }
-
 
 function updateModal(event)  {
   var tempEventTarget = event.target;
@@ -210,6 +180,7 @@ function updateEntry() {
   timeSelectValue = timeSelect.options[timeSelect.selectedIndex].textContent;
   inputBoxValue = inputBox.value;
 
+
   if (dayName === daySelectValue) {
     console.log("same");
     weekDaysData[daySelectValue][dayScheduleIndex].description = inputBoxValue;
@@ -223,8 +194,10 @@ function updateEntry() {
     });
   }
 
-  console.log('here')
-  addTableEntry();
+ 
+  addTableEntries();
+  containerModal.classList.add("hidden");
+
 
   console.log('table created')
   selectedDayHeading.textContent =
@@ -237,13 +210,11 @@ function updateEntry() {
   containerModal.classList.add("hidden");
 }
 
-
 function deleteEntry() {
   weekDaysData[daySelectValue].splice(dayScheduleIndex, 1);
   deleteModal.classList.add('hidden');
-  addTableEntry();
+  addTableEntries();
 }
-
 
 function getDayLength(){
   sundayCount.textContent = weekDaysData["sunday"].length;
