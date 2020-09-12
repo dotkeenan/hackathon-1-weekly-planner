@@ -28,7 +28,7 @@ var weekDaysData = {
 };
 
 var tableBody = document.getElementById("tableBody");
-var containerModal = document.querySelector(".containerModal");
+var containerModal = document.querySelector(".modalContainer");
 var inputBox = "";
 var daySelect = "";
 var timeSelect = "";
@@ -39,7 +39,6 @@ var dayName = "sunday";
 var dayScheduleArr = [];
 var dayScheduleIndex = "";
 
-
 // dom query for #weekDaysContainer & add event listener
 var weekDaysContainer = document.getElementById("weekDaysContainer");
 var selectedDayHeading = document.getElementById("selectedDayHeading");
@@ -47,7 +46,7 @@ var addEntryBtn = document.getElementById("addEntryBtn");
 var modalH1 = document.getElementById("modalH1");
 
 function pageLoad() {
-  selectedDayHeading.textContent = "Scheduled Events for Sunday";
+  // selectedDayHeading.textContent = "Scheduled Events for Sunday";
   tableBody.textContent = "";
   addTableEntry();
 }
@@ -71,13 +70,13 @@ function getDay(event) {
 
   dayName = targetDayId;
 
-
   // console.log('event.target:', targetDay)
   // Exclude clicks that aren't on the actual .dayItem's
   if (event.target.className.indexOf("dayItem") === -1) {
     return;
   } else {
-    selectedDayHeading.textContent = "Scheduled Events for " + targetDayFirstChildText;
+    selectedDayHeading.textContent =
+      "Scheduled Events for " + targetDayFirstChildText;
     // console.log('targetDay textContent:', targetDayText);
     tableBody.textContent = "";
     addTableEntry();
@@ -149,19 +148,19 @@ function addTableEntry() {
 
     var tableDataDeleteBtn = document.createElement("button");
     tableDataDeleteBtn.innerText = "Delete";
-    tableDataDeleteBtn.classList.add('deleteBtn');
-    tableDataDeleteBtn.addEventListener("click", function() {
-      deleteModal.classList.remove('hidden');
+    tableDataDeleteBtn.classList.add("deleteBtn");
+    tableDataDeleteBtn.addEventListener("click", function () {
+      deleteModal.classList.remove("hidden");
     });
 
-    var deleteModalYes = document.getElementById('deleteModalYes');
-    var deleteModalNo = document.getElementById('deleteModalNo');
-    deleteModalYes.addEventListener('click', deleteEntry);
-    deleteModalNo.addEventListener('click', function()  {
-      deleteModal.classList.add('hidden');
+    var deleteModalYes = document.getElementById("deleteModalYes");
+    var deleteModalNo = document.getElementById("deleteModalNo");
+    deleteModalYes.addEventListener("click", deleteEntry);
+    deleteModalNo.addEventListener("click", function () {
+      deleteModal.classList.add("hidden");
     });
 
-    buttonDiv.append(tableDataUpdateBtn, tableDataDeleteBtn)
+    buttonDiv.append(tableDataUpdateBtn, tableDataDeleteBtn);
     tableDataTask.append(buttonDiv);
     tableRow.append(tableDataTime, tableDataTask);
     tableBody.append(tableRow);
@@ -184,13 +183,12 @@ function openModal(event) {
   containerModal.classList.remove("hidden");
 }
 
-
-function updateModal(event)  {
+function updateModal(event) {
   var tempEventTarget = event.target;
   var updateBtnTargetParent = tempEventTarget.parentElement;
   var divElementParent = updateBtnTargetParent.parentElement;
   var rowTempElement = divElementParent.parentElement;
-  dayScheduleIndex = rowTempElement.getAttribute('data-index');
+  dayScheduleIndex = rowTempElement.getAttribute("data-index");
   openModal();
   modalH1.textContent = "Update Entry";
   submitButton.removeEventListener("click", getEntryData);
@@ -220,15 +218,13 @@ function updateEntry() {
   inputBox.value = "";
 }
 
-
 function deleteEntry() {
   weekDaysData[daySelectValue].splice(dayScheduleIndex, 1);
-  deleteModal.classList.add('hidden');
+  deleteModal.classList.add("hidden");
   addTableEntry();
 }
 
-
-function getDayLength(){
+function getDayLength() {
   sundayCount.textContent = weekDaysData["sunday"].length;
   mondayCount.textContent = weekDaysData["monday"].length;
   tuesdayCount.textContent = weekDaysData["tuesday"].length;
