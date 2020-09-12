@@ -209,15 +209,32 @@ function updateEntry() {
   daySelectValue = daySelect.options[daySelect.selectedIndex].value;
   timeSelectValue = timeSelect.options[timeSelect.selectedIndex].textContent;
   inputBoxValue = inputBox.value;
-  weekDaysData[daySelectValue][dayScheduleIndex].description = inputBoxValue;
-  weekDaysData[daySelectValue][dayScheduleIndex].time = timeSelectValue;
 
+  if (dayName === daySelectValue) {
+    console.log("same");
+    weekDaysData[daySelectValue][dayScheduleIndex].description = inputBoxValue;
+    weekDaysData[daySelectValue][dayScheduleIndex].time = timeSelectValue;
+  } else {
+    console.log("not same");
+    weekDaysData[dayName].splice(dayScheduleIndex, 1);
+    weekDaysData[daySelectValue].push({
+      time: timeSelectValue,
+      description: inputBoxValue,
+    });
+  }
+
+  console.log('here')
   addTableEntry();
-  containerModal.classList.add("hidden");
 
+  console.log('table created')
+  selectedDayHeading.textContent =
+    "Scheduled Events for " +
+    daySelect.options[daySelect.selectedIndex].textContent;
   daySelect.selectedIndex = 0;
   timeSelect.selectedIndex = 0;
   inputBox.value = "";
+  console.log('reset value')
+  containerModal.classList.add("hidden");
 }
 
 
