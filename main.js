@@ -111,6 +111,7 @@ function enterNewData() {
 
 }
 
+
 // Add eventlistener to submitButton.  Define getEntryValues
 
 function getEntryData(event) {
