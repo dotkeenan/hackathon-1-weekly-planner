@@ -2,6 +2,15 @@ body {
   box-sizing: border-box;
   margin: 0;
 }
+/* added for testing purposes */
+.background {
+  height: 100vh;
+  background-image: url(https://images.flytographer.com/b270a737-d778-48ba-817d-8080b9c4efe0/lake-tahoe-family-trip-family-camp-richardson_1920.jpeg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* background-position: center; */
+}
+
 .container {
   max-width: 1250px;
   width: 100%;
