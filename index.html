@@ -9,58 +9,60 @@
 </head>
 
 <body>
-  <div class="container">
-    <div class="row">
-      <h1 id="pageHeading">Weekly Planner</h1>
-    </div>
-    <div class="row">
-      <div id="weekDaysContainer">
-        <div class="dayItem" id="sunday">
-          Sunday
-          <p id="sundayCount">2</p>
-        </div>
-        <div class="dayItem" id="monday">
-          Monday
-          <p id="mondayCount">2</p>
-        </div>
-        <div class="dayItem" id="tuesday">
-          Tuesday
-          <p id="tuesdayCount">2</p>
-        </div>
-        <div class="dayItem" id="wednesday">
-          Wednesday
-          <p id="wednesdayCount">2</p>
-        </div>
-        <div class="dayItem" id="thursday">
-          Thursday
-          <p id="thursdayCount">2</p>
-        </div>
-        <div class="dayItem" id="friday">
-          Friday
-          <p id="fridayCount">2</p>
-        </div>
-        <div class="dayItem" id="saturday">
-          Saturday
-          <p id="saturdayCount">2</p>
+  <div class="background">
+    <div class="container">
+      <div class="row">
+        <h1 id="pageHeading">Weekly Planner</h1>
+      </div>
+      <div class="row">
+        <div id="weekDaysContainer">
+          <div class="dayItem" id="sunday">
+            Sunday
+            <p id="sundayCount">2</p>
+          </div>
+          <div class="dayItem" id="monday">
+            Monday
+            <p id="mondayCount">2</p>
+          </div>
+          <div class="dayItem" id="tuesday">
+            Tuesday
+            <p id="tuesdayCount">2</p>
+          </div>
+          <div class="dayItem" id="wednesday">
+            Wednesday
+            <p id="wednesdayCount">2</p>
+          </div>
+          <div class="dayItem" id="thursday">
+            Thursday
+            <p id="thursdayCount">2</p>
+          </div>
+          <div class="dayItem" id="friday">
+            Friday
+            <p id="fridayCount">2</p>
+          </div>
+          <div class="dayItem" id="saturday">
+            Saturday
+            <p id="saturdayCount">2</p>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <button id="addEntryBtn">Add Entry</button>
-    </div>
-    <div class="row">
-      <h2 id="selectedDayHeading">Scheduled Events for Sunday</h2>
-    </div>
-    <div class="row">
-      <table>
-        <thead>
-          <th>Time</th>
-          <th>Description</th>
-        </thead>
-        <tbody id="tableBody">
-          <!-- dynamically create tr and td -->
-        </tbody>
-      </table>
+      <div class="row">
+        <button id="addEntryBtn">Add Entry</button>
+      </div>
+      <div class="row">
+        <h2 id="selectedDayHeading">Scheduled Events for Sunday</h2>
+      </div>
+      <div class="row">
+        <table>
+          <thead>
+            <th>Time</th>
+            <th>Description</th>
+          </thead>
+          <tbody id="tableBody">
+            <!-- dynamically create tr and td -->
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 <div id="submitModal" class="modalContainer container hidden">

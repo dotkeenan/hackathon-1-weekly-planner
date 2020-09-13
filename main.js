@@ -31,6 +31,25 @@ var weekDaysData = {
   saturday: [],
 };
 
+var randomBackgroundUrls  =  [
+  // 'images/something.file1',
+  // 'images/something.file2',
+  // 'images/something.file3',
+  // 'images/something.file4',
+  // 'images/something.file5',
+  // 'images/something.file6',
+  // 'images/something.file7',
+  'https://images.unsplash.com/photo-1599906629469-08f4fb818e70?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80',
+  'https://images.unsplash.com/photo-1599908122223-c2be9142e268?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80',
+  'https://images.unsplash.com/photo-1599918542338-1f9addea992e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2000&q=80',
+  'https://images.unsplash.com/photo-1599917074876-8cd3166b5f63?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80',
+  'https://images.unsplash.com/photo-1599906630473-a8fc2b0fa0bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80',
+  'https://images.unsplash.com/photo-1599878015264-3c57e84c2f25?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80',
+  'https://images.unsplash.com/photo-1599918845340-10a747740ccc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80',
+];
+
+var tempBackgroundUrls = [];
+
 var tableBody = document.getElementById("tableBody");
 var containerModal = document.querySelector(".modalContainer");
 var inputBox = "";
@@ -42,15 +61,16 @@ var inputBoxValue = "";
 var dayName = "sunday";
 var dayScheduleArr = [];
 var dayScheduleIndex = "";
+var currentDayName = "Sunday";
+
 var deleteModalYes = document.getElementById('deleteModalYes');
 var deleteModalNo = document.getElementById('deleteModalNo');
 var weekDaysContainer = document.getElementById("weekDaysContainer");
 var selectedDayHeading = document.getElementById("selectedDayHeading");
 var addEntryBtn = document.getElementById("addEntryBtn");
 var modalH1 = document.getElementById("modalH1");
-var currentDayName = "Sunday";
 
-
+var background = document.querySelector('.background');
 var sundayCount = document.querySelector("#sundayCount");
 var mondayCount = document.querySelector("#mondayCount");
 var tuesdayCount = document.querySelector("#tuesdayCount");
@@ -58,8 +78,6 @@ var wednesdayCount = document.querySelector("#wednesdayCount");
 var thursdayCount = document.querySelector("#thursdayCount");
 var fridayCount = document.querySelector("#fridayCount");
 var saturdayCount = document.querySelector("#saturdayCount");
-
-
 
 submitButton.addEventListener("click", getEntryData);
 weekDaysContainer.addEventListener("click", getDay);
@@ -96,7 +114,7 @@ function getDay(event) {
     dayName = targetDayId;
     selectedDayHeading.textContent = "Scheduled Events for " + targetDayFirstChildText;
     addTableEntries();
-
+    setBackgroundImage();
   }
 }
 
@@ -282,3 +300,49 @@ function findNewIndex() {
     }
   }
 }
+
+
+//------Function to randomly choose an index of randomBackgroundUrls
+function shuffleTempArray() {
+  tempBackgroundUrls = randomBackgroundUrls.slice(0);
+  for (i = 0; i < randomBackgroundUrls.length; i++) {
+    var randomNum = Math.floor(Math.random() * randomBackgroundUrls.length);
+    var placeHolder = tempBackgroundUrls[i];
+    tempBackgroundUrls[i] = tempBackgroundUrls[randomNum];
+    tempBackgroundUrls[randomNum] = placeHolder;
+  }
+  console.log('temp array after every shuffle', tempBackgroundUrls);
+}
+shuffleTempArray();
+
+//Works but has a chance to repeat image if the last remaining image in the array
+// happens to be the array[0] when it gets repopulated.
+function setBackgroundImage() {
+  if (tempBackgroundUrls.length === 0) {
+    shuffleTempArray()
+    //the check for background.style.backgroundImage doesn't work because
+    // it is url(blah blah) and not just the string
+    if  (tempBackgroundUrls[0] === background.style.backgroundImage)  {
+      var randomImageUrl = tempBackgroundUrls[1];
+    } else  {
+    var randomImageUrl = tempBackgroundUrls[0];
+    }
+    background.style.backgroundImage = "url(" + randomImageUrl + ")";
+    tempBackgroundUrls.splice(0, 1);
+    console.log('temp array once length = 0 after filled atleast once:', tempBackgroundUrls);
+
+  } else {
+    randomImageUrl = tempBackgroundUrls[0];
+    background.style.backgroundImage = "url(" + randomImageUrl + ")";
+    tempBackgroundUrls.splice(0, 1);
+    console.log('temp array after splice:', tempBackgroundUrls);
+  }
+}
+
+//Working one that has chance of repeating previous image.
+// function setBackgroundImage() {
+//   var randomImageUrl = randomBackgroundUrls[Math.floor(Math.random() * randomBackgroundUrls.length)];
+//   console.log(randomImageUrl);
+//   background.style.backgroundImage = "url("+randomImageUrl+")";
+// }
+// END OF WORKING ONE
