@@ -116,13 +116,14 @@ th {
 }
 .divInModal {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
 }
 .modalContainer select {
   margin-bottom: 1rem;
   padding: 0.2rem 1rem;
   border: 2px solid black;
-  border-radius: 2px;
+  border-radius: 3px;
   font-weight: 700;
   margin-right: 2rem;
   cursor: pointer;
@@ -130,7 +131,7 @@ th {
 .modalContainer button {
   padding: 0.2rem 1rem;
   border: 2px solid black;
-  border-radius: 2px;
+  border-radius: 3px;
   font-weight: 700;
   margin-bottom: 1rem;
   background-color: white;
@@ -148,6 +149,12 @@ th {
   background-color: rgb(204, 204, 204);
   cursor: auto;
 }
+
+.buttons  {
+  display: block;
+  text-align: right;
+}
+
 .updateBtn,
 .deleteBtn {
   width: 80px;

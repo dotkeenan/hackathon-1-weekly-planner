@@ -152,6 +152,7 @@ function addTableEntries() {
     tableDataTask.textContent = weekDaysData[daySelectValue][i].description;
 
     var buttonDiv = document.createElement("div");
+    buttonDiv.classList.add('buttons')
 
     var tableDataUpdateBtn = document.createElement("button");
     tableDataUpdateBtn.innerText = "Update";
@@ -250,7 +251,6 @@ function deleteEntry() {
 }
 
 function getDayLength(){
-
   sundayCount.textContent = weekDaysData["sunday"].length;
   mondayCount.textContent = weekDaysData["monday"].length;
   tuesdayCount.textContent = weekDaysData["tuesday"].length;
