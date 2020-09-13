@@ -64,57 +64,63 @@
     </div>
 
     <div id="submitModal" class="modalContainer container hidden">
+    <!-- <div id="submitModal" class="modalContainer container hidden"> -->
       <div class="modal">
-        <h1 id="modalH1">Add Entry</h1>
-        <div class="DivInModal">
-          <select name="Day" id="daySelect">
-            <option value="none" selected disabled hidden>Day</option>
-            <option value="sunday">Sunday</option>
-            <option value="monday">Monday</option>
-            <option value="tuesday">Tuesday</option>
-            <option value="wednesday">Wednesday</option>
-            <option value="thursday">Thursday</option>
-            <option value="friday">Friday</option>
-            <option value="saturday">Saturday</option>
-          </select>
-          <select name="Time" id="timeSelect">
-            <option id="timeNone" value="none" selected disabled hidden>
-              Time
-            </option>
-            <option value="00:00">00:00</option>
-            <option value="01:00">01:00</option>
-            <option value="02:00">02:00</option>
-            <option value="03:00">03:00</option>
-            <option value="04:00">04:00</option>
-            <option value="05:00">05:00</option>
-            <option value="06:00">06:00</option>
-            <option value="07:00">07:00</option>
-            <option value="08:00">08:00</option>
-            <option value="09:00">09:00</option>
-            <option value="10:00">10:00</option>
-            <option value="11:00">11:00</option>
-            <option value="12:00">12:00</option>
-            <option value="13:00">13:00</option>
-            <option value="14:00">14:00</option>
-            <option value="15:00">15:00</option>
-            <option value="16:00">16:00</option>
-            <option value="17:00">17:00</option>
-            <option value="18:00">18:00</option>
-            <option value="19:00">19:00</option>
-            <option value="20:00">20:00</option>
-            <option value="21:00">21:00</option>
-            <option value="22:00">22:00</option>
-            <option value="23:00">23:00</option>
-          </select>
-          <button id="submitButton" type="button">Submit</button>
-        </div>
-        <textarea
-          id="descriptionSelect"
-          name="Description"
-          rows="8"
-          cols="75"
-          placeholder="Description"
-        ></textarea>
+        <form id="entryForm">
+
+          <h1 id="modalH1">Add Entry</h1>
+          <div class="divInModal">
+            <label for="daySelect"></label>
+            <select name="days" id="daySelect" >
+              <option name="days" value="" selected disabled hidden>Day</option>
+              <option name="days" value="sunday">Sunday</option>
+              <option name="days" value="monday">Monday</option>
+              <option name="days" value="tuesday">Tuesday</option>
+              <option name="days" value="wednesday">Wednesday</option>
+              <option name="days" value="thursday">Thursday</option>
+              <option name="days" value="friday">Friday</option>
+              <option name="days" value="saturday">Saturday</option>
+            </select>
+            <label for="timeSelect"></label>
+            <select id="timeSelect" >
+              <option id="timeNone" value="" selected disabled hidden>Time</option>
+              <option value="00:00">00:00</option>
+              <option value="01:00">01:00</option>
+              <option value="02:00">02:00</option>
+              <option value="03:00">03:00</option>
+              <option value="04:00">04:00</option>
+              <option value="05:00">05:00</option>
+              <option value="06:00">06:00</option>
+              <option value="07:00">07:00</option>
+              <option value="08:00">08:00</option>
+              <option value="09:00">09:00</option>
+              <option value="10:00">10:00</option>
+              <option value="11:00">11:00</option>
+              <option value="12:00">12:00</option>
+              <option value="13:00">13:00</option>
+              <option value="14:00">14:00</option>
+              <option value="15:00">15:00</option>
+              <option value="16:00">16:00</option>
+              <option value="17:00">17:00</option>
+              <option value="18:00">18:00</option>
+              <option value="19:00">19:00</option>
+              <option value="20:00">20:00</option>
+              <option value="21:00">21:00</option>
+              <option value="22:00">22:00</option>
+              <option value="23:00">23:00</option>
+            </select>
+            <button id="submitButton" type="submit">Submit</button>
+          </div>
+          <label for="descriptionSelect"></label>
+          <textarea
+            id="descriptionSelect"
+            rows="8"
+            cols="65"
+            placeholder="Description"
+
+          ></textarea>
+        </form>
+
       </div>
     </div>
     <div id="deleteModal" class="modalContainer container hidden">
