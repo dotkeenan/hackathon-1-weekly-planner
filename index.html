@@ -1,143 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Weekly Planner</title>
-    <link href="style.css" rel="stylesheet" />
-  </head>
-  <body>
-    <div class="container">
-      <div class="row">
-        <h1 id="pageHeading">Weekly Planner</h1>
-      </div>
-      <div class="row">
-        <div id="weekDaysContainer">
-          <div class="dayItem" id="sunday">
-            Sunday
-            <p id="sundayCount">2</p>
-          </div>
-          <div class="dayItem" id="monday">
-            Monday
-            <p id="mondayCount">2</p>
-          </div>
-          <div class="dayItem" id="tuesday">
-            Tuesday
-            <p id="tuesdayCount">2</p>
-          </div>
-          <div class="dayItem" id="wednesday">
-            Wednesday
-            <p id="wednesdayCount">2</p>
-          </div>
-          <div class="dayItem" id="thursday">
-            Thursday
-            <p id="thursdayCount">2</p>
-          </div>
-          <div class="dayItem" id="friday">
-            Friday
-            <p id="fridayCount">2</p>
-          </div>
-          <div class="dayItem" id="saturday">
-            Saturday
-            <p id="saturdayCount">2</p>
-          </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weekly Planner</title>
+  <link href="style.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <h1 id="pageHeading">Weekly Planner</h1>
+    </div>
+    <div class="row">
+      <div id="weekDaysContainer">
+        <div class="dayItem" id="sunday">
+          Sunday
+          <p id="sundayCount">2</p>
         </div>
-      </div>
-      <div class="row">
-        <button id="addEntryBtn">Add Entry</button>
-      </div>
-      <div class="row">
-        <h2 id="selectedDayHeading">Scheduled Events for Sunday</h2>
-      </div>
-      <div class="row">
-        <table>
-          <thead>
-            <th>Time</th>
-            <th>Description</th>
-          </thead>
-
-          <tbody id="tableBody">
-            <!-- dynamically create tr and td -->
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-
-    <div id="submitModal" class="modalContainer container hidden">
-    <!-- <div id="submitModal" class="modalContainer container hidden"> -->
-      <div class="modal">
-        <form id="entryForm">
-
-          <h1 id="modalH1">Add Entry</h1>
-          <div class="divInModal">
-            <label for="daySelect"></label>
-            <select name="days" id="daySelect" >
-              <option name="days" value="" selected disabled hidden>Day</option>
-              <option name="days" value="sunday">Sunday</option>
-              <option name="days" value="monday">Monday</option>
-              <option name="days" value="tuesday">Tuesday</option>
-              <option name="days" value="wednesday">Wednesday</option>
-              <option name="days" value="thursday">Thursday</option>
-              <option name="days" value="friday">Friday</option>
-              <option name="days" value="saturday">Saturday</option>
-            </select>
-            <label for="timeSelect"></label>
-            <select id="timeSelect" >
-              <option id="timeNone" value="" selected disabled hidden>Time</option>
-              <option value="00:00">00:00</option>
-              <option value="01:00">01:00</option>
-              <option value="02:00">02:00</option>
-              <option value="03:00">03:00</option>
-              <option value="04:00">04:00</option>
-              <option value="05:00">05:00</option>
-              <option value="06:00">06:00</option>
-              <option value="07:00">07:00</option>
-              <option value="08:00">08:00</option>
-              <option value="09:00">09:00</option>
-              <option value="10:00">10:00</option>
-              <option value="11:00">11:00</option>
-              <option value="12:00">12:00</option>
-              <option value="13:00">13:00</option>
-              <option value="14:00">14:00</option>
-              <option value="15:00">15:00</option>
-              <option value="16:00">16:00</option>
-              <option value="17:00">17:00</option>
-              <option value="18:00">18:00</option>
-              <option value="19:00">19:00</option>
-              <option value="20:00">20:00</option>
-              <option value="21:00">21:00</option>
-              <option value="22:00">22:00</option>
-              <option value="23:00">23:00</option>
-            </select>
-            <button id="submitButton" type="submit">Submit</button>
-          </div>
-          <label for="descriptionSelect"></label>
-          <textarea
-            id="descriptionSelect"
-            rows="8"
-            cols="65"
-            placeholder="Description"
-
-          ></textarea>
-        </form>
-
-      </div>
-    </div>
-    <div id="deleteModal" class="modalContainer container hidden">
-      <div class="modal">
-        <h1>Delete Entry</h1>
-        <h3>Are you sure you want to delete this entry?</h3>
-        <div class="buttonsDiv">
-          <button type="button" id="deleteModalYes" class="deleteButton">
-            Yes
-          </button>
-          <button type="button" id="deleteModalNo" class="deleteButton">
-            No
-          </button>
+        <div class="dayItem" id="monday">
+          Monday
+          <p id="mondayCount">2</p>
+        </div>
+        <div class="dayItem" id="tuesday">
+          Tuesday
+          <p id="tuesdayCount">2</p>
+        </div>
+        <div class="dayItem" id="wednesday">
+          Wednesday
+          <p id="wednesdayCount">2</p>
+        </div>
+        <div class="dayItem" id="thursday">
+          Thursday
+          <p id="thursdayCount">2</p>
+        </div>
+        <div class="dayItem" id="friday">
+          Friday
+          <p id="fridayCount">2</p>
+        </div>
+        <div class="dayItem" id="saturday">
+          Saturday
+          <p id="saturdayCount">2</p>
         </div>
       </div>
     </div>
-    <script src="main.js"></script>
-  </body>
+    <div class="row">
+      <button id="addEntryBtn">Add Entry</button>
+    </div>
+    <div class="row">
+      <h2 id="selectedDayHeading">Scheduled Events for Sunday</h2>
+    </div>
+    <div class="row">
+      <table>
+        <thead>
+          <th>Time</th>
+          <th>Description</th>
+        </thead>
+        <tbody id="tableBody">
+          <!-- dynamically create tr and td -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+<div id="submitModal" class="modalContainer container hidden">
+    <div class="modal">
+      <h1 id="modalH1">Add Entry</h1>
+      <div class="DivInModal">
+        <select name="Day" id="daySelect">
+          <option value="none" selected disabled hidden>Day</option>
+          <option value="sunday">Sunday</option>
+          <option value="monday">Monday</option>
+          <option value="tuesday">Tuesday</option>
+          <option value="wednesday">Wednesday</option>
+          <option value="thursday">Thursday</option>
+          <option value="friday">Friday</option>
+          <option value="saturday">Saturday</option>
+        </select>
+        <select name="Time" id="timeSelect">
+          <option id="timeNone" value="none" selected disabled hidden>
+            Time
+          </option>
+          <option value="00:00">00:00</option>
+          <option value="01:00">01:00</option>
+          <option value="02:00">02:00</option>
+          <option value="03:00">03:00</option>
+          <option value="04:00">04:00</option>
+          <option value="05:00">05:00</option>
+          <option value="06:00">06:00</option>
+          <option value="07:00">07:00</option>
+          <option value="08:00">08:00</option>
+          <option value="09:00">09:00</option>
+          <option value="10:00">10:00</option>
+          <option value="11:00">11:00</option>
+          <option value="12:00">12:00</option>
+          <option value="13:00">13:00</option>
+          <option value="14:00">14:00</option>
+          <option value="15:00">15:00</option>
+          <option value="16:00">16:00</option>
+          <option value="17:00">17:00</option>
+          <option value="18:00">18:00</option>
+          <option value="19:00">19:00</option>
+          <option value="20:00">20:00</option>
+          <option value="21:00">21:00</option>
+          <option value="22:00">22:00</option>
+          <option value="23:00">23:00</option>
+        </select>
+        <button id="submitButton" type="button">Submit</button>
+      </div>
+      <textarea id="descriptionSelect" name="Description" rows="8" cols="65" placeholder="Description"></textarea>
+    </div>
+  </div>
+  <div id="deleteModal" class="modalContainer container hidden">
+    <div class="modal">
+      <h1>Delete Entry</h1>
+      <h3>Are you sure you want to delete this entry?</h3>
+      <div class="buttonsDiv">
+        <button type="button" id="deleteModalYes" class="deleteButton">
+          Yes
+        </button>
+        <button type="button" id="deleteModalNo" class="deleteButton">
+          No
+        </button>
+      </div>
+    </div>
+  </div>
+  <script src="main.js"></script>
+</body>
+
 </html>
