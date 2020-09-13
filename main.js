@@ -111,6 +111,7 @@ function enterNewData() {
 
 }
 
+
 // Add eventlistener to submitButton.  Define getEntryValues
 
 function getEntryData(event) {
@@ -152,7 +153,6 @@ function addTableEntries() {
     tableDataTask.textContent = weekDaysData[daySelectValue][i].description;
 
     var buttonDiv = document.createElement("div");
-    buttonDiv.classList.add('buttons')
 
     var tableDataUpdateBtn = document.createElement("button");
     tableDataUpdateBtn.innerText = "Update";
@@ -163,7 +163,7 @@ function addTableEntries() {
     tableDataDeleteBtn.innerText = "Delete";
 
     tableDataDeleteBtn.classList.add('deleteBtn');
-    tableDataDeleteBtn.addEventListener("click", function(){
+    tableDataDeleteBtn.addEventListener("click", function () {
       deleteModal.classList.remove('hidden');
     })
 
@@ -185,7 +185,7 @@ function openModal(event) {
 }
 
 
-function updateModal(event)  {
+function updateModal(event) {
   var tempEventTarget = event.target;
   var updateBtnTargetParent = tempEventTarget.parentElement;
   var divElementParent = updateBtnTargetParent.parentElement;
@@ -234,7 +234,7 @@ function updateEntry() {
 
   console.log('table created')
   selectedDayHeading.textContent =
-  "Scheduled Events for " + currentDayName;
+    "Scheduled Events for " + currentDayName;
   containerModal.classList.add("hidden");
   daySelect.selectedIndex = 0;
   timeSelect.selectedIndex = 0;
@@ -250,7 +250,8 @@ function deleteEntry() {
   addTableEntries();
 }
 
-function getDayLength(){
+function getDayLength() {
+
   sundayCount.textContent = weekDaysData["sunday"].length;
   mondayCount.textContent = weekDaysData["monday"].length;
   tuesdayCount.textContent = weekDaysData["tuesday"].length;
@@ -270,10 +271,10 @@ var newIndex = 0;
 function findNewIndex() {
   newIndex = 0
   var tempEntryTime = parseInt(timeSelectValue.slice(0, 2));
-  for(var i = 0; i < weekDaysData[daySelectValue].length;) {
+  for (var i = 0; i < weekDaysData[daySelectValue].length;) {
     var tempDataTime = parseInt(weekDaysData[daySelectValue][i].time);
 
-    if(tempEntryTime > tempDataTime) {
+    if (tempEntryTime > tempDataTime) {
       newIndex++;
       i++
     } else {
