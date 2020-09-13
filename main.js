@@ -1,12 +1,16 @@
 var weekDaysData = {
   sunday: [
     {
-      time: "10:00",
+      time: "00:00",
       description: "some plan",
     },
     {
-      time: "20:00",
+      time: "23:00",
       description: "another meeting",
+    },
+    {
+      time: "05:00",
+      description: "the meeting",
     },
   ],
 
@@ -44,6 +48,18 @@ var weekDaysContainer = document.getElementById("weekDaysContainer");
 var selectedDayHeading = document.getElementById("selectedDayHeading");
 var addEntryBtn = document.getElementById("addEntryBtn");
 var modalH1 = document.getElementById("modalH1");
+var currentDayName = "Sunday";
+
+
+var sundayCount = document.querySelector("#sundayCount");
+var mondayCount = document.querySelector("#mondayCount");
+var tuesdayCount = document.querySelector("#tuesdayCount");
+var wednesdayCount = document.querySelector("#wednesdayCount");
+var thursdayCount = document.querySelector("#thursdayCount");
+var fridayCount = document.querySelector("#fridayCount");
+var saturdayCount = document.querySelector("#saturdayCount");
+
+
 
 submitButton.addEventListener("click", getEntryData);
 weekDaysContainer.addEventListener("click", getDay);
@@ -87,10 +103,12 @@ function getDay(event) {
 //----------new entry--------
 
 function enterNewData() {
-  weekDaysData[daySelectValue].push({
+  findNewIndex();
+  weekDaysData[daySelectValue].splice(newIndex, 0, {
     time: timeSelectValue,
     description: inputBoxValue,
   });
+
 }
 
 // Add eventlistener to submitButton.  Define getEntryValues
@@ -106,8 +124,12 @@ function getEntryData(event) {
   daySelectValue = daySelect.options[daySelect.selectedIndex].value;
   timeSelectValue = timeSelect.options[timeSelect.selectedIndex].textContent;
   inputBoxValue = inputBox.value;
+
+  currentDayName = daySelect.options[daySelect.selectedIndex].textContent;
   enterNewData();
+  console.log(currentDayName)
   addTableEntries();
+  console.log(currentDayName)
   //------- resetting values and hiding modal
 
   containerModal.classList.add("hidden");
@@ -151,6 +173,7 @@ function addTableEntries() {
     tableRow.append(tableDataTime, tableDataTask);
     tableBody.append(tableRow);
   }
+  selectedDayHeading.textContent = "Scheduled Events for " + currentDayName;
   getDayLength();
 }
 
@@ -187,6 +210,7 @@ function updateEntry() {
   timeSelectValue = timeSelect.options[timeSelect.selectedIndex].textContent;
   inputBoxValue = inputBox.value;
 
+  currentDayName = daySelect.options[daySelect.selectedIndex].textContent;
 
   if (dayName === daySelectValue) {
     console.log("same");
@@ -195,7 +219,10 @@ function updateEntry() {
   } else {
     console.log("not same");
     weekDaysData[dayName].splice(dayScheduleIndex, 1);
-    weekDaysData[daySelectValue].push({
+
+
+    findNewIndex();
+    weekDaysData[daySelectValue].splice(newIndex, 0, {
       time: timeSelectValue,
       description: inputBoxValue,
     });
@@ -203,13 +230,12 @@ function updateEntry() {
 
 
   addTableEntries();
-  containerModal.classList.add("hidden");
 
 
   console.log('table created')
   selectedDayHeading.textContent =
-    "Scheduled Events for " +
-    daySelect.options[daySelect.selectedIndex].textContent;
+  "Scheduled Events for " + currentDayName;
+  containerModal.classList.add("hidden");
   daySelect.selectedIndex = 0;
   timeSelect.selectedIndex = 0;
   inputBox.value = "";
@@ -232,4 +258,26 @@ function getDayLength(){
   thursdayCount.textContent = weekDaysData["thursday"].length;
   fridayCount.textContent = weekDaysData["friday"].length;
   saturdayCount.textContent = weekDaysData["saturday"].length;
+}
+
+
+
+//--------------sort entries at the time of new entry or update
+//--------------before sort check for length of array at selected day, if 0 add without sort
+
+
+var newIndex = 0;
+function findNewIndex() {
+  newIndex = 0
+  var tempEntryTime = parseInt(timeSelectValue.slice(0, 2));
+  for(var i = 0; i < weekDaysData[daySelectValue].length;) {
+    var tempDataTime = parseInt(weekDaysData[daySelectValue][i].time);
+
+    if(tempEntryTime > tempDataTime) {
+      newIndex++;
+      i++
+    } else {
+      return;
+    }
+  }
 }
