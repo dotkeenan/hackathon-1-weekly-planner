@@ -311,38 +311,18 @@ function shuffleTempArray() {
     tempBackgroundUrls[i] = tempBackgroundUrls[randomNum];
     tempBackgroundUrls[randomNum] = placeHolder;
   }
-  console.log('temp array after every shuffle', tempBackgroundUrls);
 }
 shuffleTempArray();
 
-//Works but has a chance to repeat image if the last remaining image in the array
-// happens to be the array[0] when it gets repopulated.
 function setBackgroundImage() {
   if (tempBackgroundUrls.length === 0) {
     shuffleTempArray()
-    //the check for background.style.backgroundImage doesn't work because
-    // it is url(blah blah) and not just the string
-    if  (tempBackgroundUrls[0] === background.style.backgroundImage)  {
-      var randomImageUrl = tempBackgroundUrls[1];
-    } else  {
     var randomImageUrl = tempBackgroundUrls[0];
-    }
     background.style.backgroundImage = "url(" + randomImageUrl + ")";
     tempBackgroundUrls.splice(0, 1);
-    console.log('temp array once length = 0 after filled atleast once:', tempBackgroundUrls);
-
   } else {
     randomImageUrl = tempBackgroundUrls[0];
     background.style.backgroundImage = "url(" + randomImageUrl + ")";
     tempBackgroundUrls.splice(0, 1);
-    console.log('temp array after splice:', tempBackgroundUrls);
   }
 }
-
-//Working one that has chance of repeating previous image.
-// function setBackgroundImage() {
-//   var randomImageUrl = randomBackgroundUrls[Math.floor(Math.random() * randomBackgroundUrls.length)];
-//   console.log(randomImageUrl);
-//   background.style.backgroundImage = "url("+randomImageUrl+")";
-// }
-// END OF WORKING ONE
