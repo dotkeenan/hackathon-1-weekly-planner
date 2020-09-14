@@ -16,7 +16,6 @@ h2 {
   background-repeat: no-repeat;
   background-position: center;
 }
-
 .container {
   max-width: 1250px;
   width: 100%;
@@ -105,8 +104,6 @@ tr:nth-child(even) {
 tr:nth-child(odd) {
   background-color: #937fa3b0;
 }
-td {
-}
 td,
 th {
   padding: 2px;
@@ -160,8 +157,6 @@ th {
   background-color: #937fa3;
   color: white;
   outline: none;
-}
-#descriptionSelect {
 }
 #submitButton:hover {
   background-color: rgb(142, 187, 224);
