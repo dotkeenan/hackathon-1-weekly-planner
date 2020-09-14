@@ -1,20 +1,13 @@
 var weekDaysData = "";
 
 var randomBackgroundUrls = [
-  // 'images/something.file1',
-  // 'images/something.file2',
-  // 'images/something.file3',
-  // 'images/something.file4',
-  // 'images/something.file5',
-  // 'images/something.file6',
-  "https://i.pinimg.com/originals/c6/20/ca/c620caef7766c43a20b3ab81b2ebcbc0.png",
-  "https://images.unsplash.com/photo-1599906629469-08f4fb818e70?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80",
-  "https://images.unsplash.com/photo-1599908122223-c2be9142e268?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
-
-  "https://images.unsplash.com/photo-1599918542338-1f9addea992e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2000&q=80",
-  "https://www.wanderingsunsets.com/wp-content/uploads/2019/09/purple-lavender-flowers-field-with-lonely-old-2YETUHA-1-scaled.jpg",
-  "https://3.bp.blogspot.com/-0uTYbhRviZo/XFUltMXwpmI/AAAAAAAABz0/8qFN2fjMUBYCb8MOlLia1gRbRrrH9sNBQCKgBGAs/w2880-h1800-c/mountain-purple-sky-nature-scenery-4-4K.jpg",
-  "https://wallpaperaccess.com/full/1474165.jpg",
+  "pics/painted.png",
+  "pics/pine-needles.jpg",
+  "pics/pumpkin.jpg",
+  "pics/grape-looking-flowers.jpg",
+  "pics/lavender.jpg",
+  "pics/pink-mountain.jpg",
+  "pics/snowy-lake.jpg",
 ];
 
 var tempBackgroundUrls = [];
@@ -328,7 +321,6 @@ function shuffleTempArray() {
   }
 }
 shuffleTempArray();
-
 function setBackgroundImage() {
   if (tempBackgroundUrls.length === 0) {
     shuffleTempArray();
@@ -344,5 +336,15 @@ function setBackgroundImage() {
     console.log(modalBackground);
     console.log(randomImageUrl);
     tempBackgroundUrls.splice(0, 1);
+    var coinFlip = Math.floor(Math.random() * 100);
+    if (coinFlip % 2 == 0) {
+      background.style.filter = "hue-rotate(90deg)";
+      coinFlip = Math.floor(Math.random() * 100);
+      console.log(coinFlip);
+    } else if (coinFlip % 2 != 0) {
+      background.style.filter = "hue-rotate(0deg)";
+      coinFlip = Math.floor(Math.random() * 100);
+      console.log(coinFlip);
+    }
   }
 }
