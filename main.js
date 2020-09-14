@@ -1,5 +1,24 @@
 var weekDaysData = "";
 
+var randomBackgroundUrls = [
+  // 'images/something.file1',
+  // 'images/something.file2',
+  // 'images/something.file3',
+  // 'images/something.file4',
+  // 'images/something.file5',
+  // 'images/something.file6',
+  "https://i.pinimg.com/originals/c6/20/ca/c620caef7766c43a20b3ab81b2ebcbc0.png",
+  "https://images.unsplash.com/photo-1599906629469-08f4fb818e70?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80",
+  "https://images.unsplash.com/photo-1599908122223-c2be9142e268?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
+
+  "https://images.unsplash.com/photo-1599918542338-1f9addea992e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2000&q=80",
+  "https://www.wanderingsunsets.com/wp-content/uploads/2019/09/purple-lavender-flowers-field-with-lonely-old-2YETUHA-1-scaled.jpg",
+  "https://3.bp.blogspot.com/-0uTYbhRviZo/XFUltMXwpmI/AAAAAAAABz0/8qFN2fjMUBYCb8MOlLia1gRbRrrH9sNBQCKgBGAs/w2880-h1800-c/mountain-purple-sky-nature-scenery-4-4K.jpg",
+  "https://wallpaperaccess.com/full/1474165.jpg",
+];
+
+var tempBackgroundUrls = [];
+
 var tableBody = document.getElementById("tableBody");
 var containerModal = document.querySelector(".modalContainer");
 var inputBox = "";
@@ -11,15 +30,16 @@ var inputBoxValue = "";
 var dayName = "sunday";
 var dayScheduleArr = [];
 var dayScheduleIndex = "";
-var deleteModalYes = document.getElementById('deleteModalYes');
-var deleteModalNo = document.getElementById('deleteModalNo');
+var currentDayName = "Sunday";
+
+var deleteModalYes = document.getElementById("deleteModalYes");
+var deleteModalNo = document.getElementById("deleteModalNo");
 var weekDaysContainer = document.getElementById("weekDaysContainer");
 var selectedDayHeading = document.getElementById("selectedDayHeading");
 var addEntryBtn = document.getElementById("addEntryBtn");
 var modalH1 = document.getElementById("modalH1");
-var currentDayName = "Sunday";
 
-
+var background = document.querySelector(".background");
 var sundayCount = document.querySelector("#sundayCount");
 var mondayCount = document.querySelector("#mondayCount");
 var tuesdayCount = document.querySelector("#tuesdayCount");
@@ -28,13 +48,11 @@ var thursdayCount = document.querySelector("#thursdayCount");
 var fridayCount = document.querySelector("#fridayCount");
 var saturdayCount = document.querySelector("#saturdayCount");
 
-
-
 submitButton.addEventListener("click", getEntryData);
 weekDaysContainer.addEventListener("click", getDay);
-deleteModalYes.addEventListener('click', deleteEntry);
-deleteModalNo.addEventListener('click', function () {
-  deleteModal.classList.add('hidden');
+deleteModalYes.addEventListener("click", deleteEntry);
+deleteModalNo.addEventListener("click", function () {
+  deleteModal.classList.add("hidden");
 });
 addEntryBtn.addEventListener("click", function () {
   var updateBtnTarget = event.target;
@@ -48,12 +66,10 @@ addEntryBtn.addEventListener("click", function () {
 function pageLoad() {
   gettingDataObj();
   addTableEntries();
-
 }
 pageLoad();
 
 function getDay(event) {
-
   if (event.target.className.indexOf("dayItem") === -1) {
     return;
   } else {
@@ -64,9 +80,10 @@ function getDay(event) {
     console.log(targetDayText);
     daySelectValue = targetDayId;
     dayName = targetDayId;
-    selectedDayHeading.textContent = "Scheduled Events for " + targetDayFirstChildText;
+    selectedDayHeading.textContent =
+      "Scheduled Events for " + targetDayFirstChildText;
     addTableEntries();
-
+    setBackgroundImage();
   }
 }
 
@@ -78,9 +95,10 @@ function enterNewData() {
     time: timeSelectValue,
     description: inputBoxValue,
   });
-  savingToStorage();
-}
 
+  savingToStorage();
+
+}
 
 // Add eventlistener to submitButton.  Define getEntryValues
 
@@ -98,9 +116,9 @@ function getEntryData(event) {
 
   currentDayName = daySelect.options[daySelect.selectedIndex].textContent;
   enterNewData();
-  console.log(currentDayName)
+  console.log(currentDayName);
   addTableEntries();
-  console.log(currentDayName)
+  console.log(currentDayName);
   //------- resetting values and hiding modal
 
   containerModal.classList.add("hidden");
@@ -132,11 +150,10 @@ function addTableEntries() {
     var tableDataDeleteBtn = document.createElement("button");
     tableDataDeleteBtn.innerText = "Delete";
 
-    tableDataDeleteBtn.classList.add('deleteBtn');
-    tableDataDeleteBtn.addEventListener("click", function(){
-      deleteModal.classList.remove('hidden');
-    })
-
+    tableDataDeleteBtn.classList.add("deleteBtn");
+    tableDataDeleteBtn.addEventListener("click", function () {
+      deleteModal.classList.remove("hidden");
+    });
 
     buttonDiv.append(tableDataUpdateBtn, tableDataDeleteBtn);
     tableDataTask.append(buttonDiv);
@@ -154,8 +171,7 @@ function openModal(event) {
   containerModal.classList.remove("hidden");
 }
 
-
-function updateModal(event)  {
+function updateModal(event) {
   var tempEventTarget = event.target;
   var updateBtnTargetParent = tempEventTarget.parentElement;
   var divElementParent = updateBtnTargetParent.parentElement;
@@ -190,7 +206,6 @@ function updateEntry() {
     console.log("not same");
     weekDaysData[dayName].splice(dayScheduleIndex, 1);
 
-
     findNewIndex();
     weekDaysData[daySelectValue].splice(newIndex, 0, {
       time: timeSelectValue,
@@ -198,31 +213,32 @@ function updateEntry() {
     });
   }
 
+
   savingToStorage();
+
   addTableEntries();
 
-
-  console.log('table created')
-  selectedDayHeading.textContent =
-  "Scheduled Events for " + currentDayName;
+  console.log("table created");
+  selectedDayHeading.textContent = "Scheduled Events for " + currentDayName;
   containerModal.classList.add("hidden");
   daySelect.selectedIndex = 0;
   timeSelect.selectedIndex = 0;
   inputBox.value = "";
-  console.log('reset value')
+  console.log("reset value");
   containerModal.classList.add("hidden");
 }
 
 function deleteEntry() {
   weekDaysData[daySelectValue].splice(dayScheduleIndex, 1);
 
+
   deleteModal.classList.add('hidden');
   savingToStorage();
+
   addTableEntries();
 }
 
-function getDayLength(){
-
+function getDayLength() {
   sundayCount.textContent = weekDaysData["sunday"].length;
   mondayCount.textContent = weekDaysData["monday"].length;
   tuesdayCount.textContent = weekDaysData["tuesday"].length;
@@ -232,22 +248,19 @@ function getDayLength(){
   saturdayCount.textContent = weekDaysData["saturday"].length;
 }
 
-
-
 //--------------sort entries at the time of new entry or update
 //--------------before sort check for length of array at selected day, if 0 add without sort
 
-
 var newIndex = 0;
 function findNewIndex() {
-  newIndex = 0
+  newIndex = 0;
   var tempEntryTime = parseInt(timeSelectValue.slice(0, 2));
-  for(var i = 0; i < weekDaysData[daySelectValue].length;) {
+  for (var i = 0; i < weekDaysData[daySelectValue].length; ) {
     var tempDataTime = parseInt(weekDaysData[daySelectValue][i].time);
 
-    if(tempEntryTime > tempDataTime) {
+    if (tempEntryTime > tempDataTime) {
       newIndex++;
-      i++
+      i++;
     } else {
       return;
     }
@@ -308,5 +321,36 @@ function gettingDataObj() {
 };
   } else {
     console.log('Data didnt load!')
+
+var modalBackground = document.querySelector(".modal");
+var deleteModalBackground = document.querySelector(".mo");
+//------Function to randomly choose an index of randomBackgroundUrls
+function shuffleTempArray() {
+  tempBackgroundUrls = randomBackgroundUrls.slice(0);
+  for (i = 0; i < randomBackgroundUrls.length; i++) {
+    var randomNum = Math.floor(Math.random() * randomBackgroundUrls.length);
+    var placeHolder = tempBackgroundUrls[i];
+    tempBackgroundUrls[i] = tempBackgroundUrls[randomNum];
+    tempBackgroundUrls[randomNum] = placeHolder;
+  }
+}
+shuffleTempArray();
+
+function setBackgroundImage() {
+  if (tempBackgroundUrls.length === 0) {
+    shuffleTempArray();
+    var randomImageUrl = tempBackgroundUrls[0];
+    background.style.backgroundImage = "url(" + randomImageUrl + ")";
+    modalBackground.style.backgroundImage = "url(" + randomImageUrl + ")";
+    tempBackgroundUrls.splice(0, 1);
+  } else {
+    randomImageUrl = tempBackgroundUrls[0];
+    background.style.backgroundImage = "url(" + randomImageUrl + ")";
+    modalBackground.style.backgroundImage = "url(" + randomImageUrl + ")";
+    deleteModalBackground.style.backgroundImage = "url(" + randomImageUrl + ")";
+    console.log(modalBackground);
+    console.log(randomImageUrl);
+    tempBackgroundUrls.splice(0, 1);
+
   }
 }
