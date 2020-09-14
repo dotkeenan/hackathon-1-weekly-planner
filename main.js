@@ -1,15 +1,13 @@
 var weekDaysData = "";
 
 var randomBackgroundUrls = [
-
-  "pics/painted.png",
-  "pics/pine-needles.jpg",
-  "pics/pumpkin.jpg",
-  "pics/grape-looking-flowers.jpg",
-  "pics/lavender.jpg",
-  "pics/pink-mountain.jpg",
-  "pics/snowy-lake.jpg",
-
+  "./assets/background-images/painted.png",
+  "./assets/background-images/pine-needles.jpg",
+  "./assets/background-images/pumpkin.jpg",
+  "./assets/background-images/grape-looking-flowers.jpg",
+  "./assets/background-images/lavender.jpg",
+  "./assets/background-images/pink-mountain.jpg",
+  "./assets/background-images/snowy-lake.jpg",
 ];
 
 var tempBackgroundUrls = [];
