@@ -1,35 +1,4 @@
-var weekDaysData = {
-  sunday: [
-    {
-      time: "00:00",
-      description: "some plan",
-    },
-    {
-      time: "23:00",
-      description: "another meeting",
-    },
-    {
-      time: "05:00",
-      description: "the meeting",
-    },
-  ],
-
-  monday: [
-    {
-      time: "18:00",
-      description: "very important meeting",
-    },
-    {
-      time: "22:00",
-      description: "the task",
-    },
-  ],
-  tuesday: [],
-  wednesday: [],
-  thursday: [],
-  friday: [],
-  saturday: [],
-};
+var weekDaysData = "";
 
 var tableBody = document.getElementById("tableBody");
 var containerModal = document.querySelector(".modalContainer");
@@ -77,6 +46,7 @@ addEntryBtn.addEventListener("click", function () {
 });
 
 function pageLoad() {
+  gettingDataObj();
   addTableEntries();
 
 }
@@ -108,7 +78,7 @@ function enterNewData() {
     time: timeSelectValue,
     description: inputBoxValue,
   });
-
+  savingToStorage();
 }
 
 
@@ -228,7 +198,7 @@ function updateEntry() {
     });
   }
 
-
+  savingToStorage();
   addTableEntries();
 
 
@@ -247,6 +217,7 @@ function deleteEntry() {
   weekDaysData[daySelectValue].splice(dayScheduleIndex, 1);
 
   deleteModal.classList.add('hidden');
+  savingToStorage();
   addTableEntries();
 }
 
@@ -280,5 +251,62 @@ function findNewIndex() {
     } else {
       return;
     }
+  }
+}
+
+
+
+//----------- setting and getting data to/from local storage
+
+
+function savingToStorage() {
+  var tempDataObj = weekDaysData;
+  var dataString = JSON.stringify(tempDataObj);
+  localStorage.setItem('plannerDataObj', dataString);
+}
+
+
+
+function gettingDataObj() {
+  var fromStorage = localStorage.getItem('plannerDataObj');
+
+  if(fromStorage !== null) {
+    var tempDataObj = JSON.parse(fromStorage)
+    weekDaysData = tempDataObj;
+  } else if (fromStorage === null) {
+    weekDaysData = {
+  sunday: [
+    {
+      time: "00:00",
+      description: "some plan",
+    },
+    {
+      time: "23:00",
+      description: "another meeting",
+    },
+    {
+      time: "05:00",
+      description: "the meeting",
+    },
+  ],
+
+  monday: [
+    {
+      time: "18:00",
+      description: "very important meeting",
+    },
+    {
+      time: "22:00",
+      description: "the task",
+    },
+  ],
+  tuesday: [],
+  wednesday: [],
+  thursday: [],
+  friday: [],
+  saturday: [],
+};
+  } else {
+    console.log('Data didnt load!')
   }
 }
