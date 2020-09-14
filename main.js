@@ -97,7 +97,6 @@ function enterNewData() {
   });
 
   savingToStorage();
-
 }
 
 // Add eventlistener to submitButton.  Define getEntryValues
@@ -213,7 +212,6 @@ function updateEntry() {
     });
   }
 
-
   savingToStorage();
 
   addTableEntries();
@@ -231,8 +229,7 @@ function updateEntry() {
 function deleteEntry() {
   weekDaysData[daySelectValue].splice(dayScheduleIndex, 1);
 
-
-  deleteModal.classList.add('hidden');
+  deleteModal.classList.add("hidden");
   savingToStorage();
 
   addTableEntries();
@@ -267,61 +264,57 @@ function findNewIndex() {
   }
 }
 
-
-
 //----------- setting and getting data to/from local storage
-
 
 function savingToStorage() {
   var tempDataObj = weekDaysData;
   var dataString = JSON.stringify(tempDataObj);
-  localStorage.setItem('plannerDataObj', dataString);
+  localStorage.setItem("plannerDataObj", dataString);
 }
 
-
-
 function gettingDataObj() {
-  var fromStorage = localStorage.getItem('plannerDataObj');
+  var fromStorage = localStorage.getItem("plannerDataObj");
 
-  if(fromStorage !== null) {
-    var tempDataObj = JSON.parse(fromStorage)
+  if (fromStorage !== null) {
+    var tempDataObj = JSON.parse(fromStorage);
     weekDaysData = tempDataObj;
   } else if (fromStorage === null) {
     weekDaysData = {
-  sunday: [
-    {
-      time: "00:00",
-      description: "some plan",
-    },
-    {
-      time: "23:00",
-      description: "another meeting",
-    },
-    {
-      time: "05:00",
-      description: "the meeting",
-    },
-  ],
+      sunday: [
+        {
+          time: "00:00",
+          description: "some plan",
+        },
+        {
+          time: "23:00",
+          description: "another meeting",
+        },
+        {
+          time: "05:00",
+          description: "the meeting",
+        },
+      ],
 
-  monday: [
-    {
-      time: "18:00",
-      description: "very important meeting",
-    },
-    {
-      time: "22:00",
-      description: "the task",
-    },
-  ],
-  tuesday: [],
-  wednesday: [],
-  thursday: [],
-  friday: [],
-  saturday: [],
-};
+      monday: [
+        {
+          time: "18:00",
+          description: "very important meeting",
+        },
+        {
+          time: "22:00",
+          description: "the task",
+        },
+      ],
+      tuesday: [],
+      wednesday: [],
+      thursday: [],
+      friday: [],
+      saturday: [],
+    };
   } else {
-    console.log('Data didnt load!')
-
+    console.log("Data didnt load!");
+  }
+}
 var modalBackground = document.querySelector(".modal");
 var deleteModalBackground = document.querySelector(".mo");
 //------Function to randomly choose an index of randomBackgroundUrls
@@ -351,6 +344,5 @@ function setBackgroundImage() {
     console.log(modalBackground);
     console.log(randomImageUrl);
     tempBackgroundUrls.splice(0, 1);
-
   }
 }
