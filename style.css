@@ -1,14 +1,13 @@
 body {
+  background-color: black;
   box-sizing: border-box;
   margin: 0;
-  /* background-image: url("https://i.pinimg.com/originals/c6/20/ca/c620caef7766c43a20b3ab81b2ebcbc0.png"); */
   background-size: cover;
 }
 h1,
 h2 {
   color: white;
 }
-/* added for testing purposes */
 .background {
   height: 100vh;
   background-image: url(https://i.pinimg.com/originals/c6/20/ca/c620caef7766c43a20b3ab81b2ebcbc0.png);
@@ -104,6 +103,7 @@ tr:nth-child(even) {
 tr:nth-child(odd) {
   background-color: #937fa3b0;
 }
+
 td,
 th {
   padding: 2px;
@@ -158,6 +158,7 @@ th {
   color: white;
   outline: none;
 }
+
 #submitButton:hover {
   background-color: rgb(142, 187, 224);
   cursor: pointer;

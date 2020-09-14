@@ -1,6 +1,7 @@
 var weekDaysData = "";
 
 var randomBackgroundUrls = [
+
   "pics/painted.png",
   "pics/pine-needles.jpg",
   "pics/pumpkin.jpg",
@@ -8,6 +9,7 @@ var randomBackgroundUrls = [
   "pics/lavender.jpg",
   "pics/pink-mountain.jpg",
   "pics/snowy-lake.jpg",
+
 ];
 
 var tempBackgroundUrls = [];
@@ -24,6 +26,7 @@ var dayName = "sunday";
 var dayScheduleArr = [];
 var dayScheduleIndex = "";
 var currentDayName = "Sunday";
+var targetDayFirstChildText;
 
 var deleteModalYes = document.getElementById("deleteModalYes");
 var deleteModalNo = document.getElementById("deleteModalNo");
@@ -41,6 +44,9 @@ var thursdayCount = document.querySelector("#thursdayCount");
 var fridayCount = document.querySelector("#fridayCount");
 var saturdayCount = document.querySelector("#saturdayCount");
 
+var modalBackground = document.querySelector(".modal");
+var deleteModalBackground = document.querySelector(".mo");
+
 submitButton.addEventListener("click", getEntryData);
 weekDaysContainer.addEventListener("click", getDay);
 deleteModalYes.addEventListener("click", deleteEntry);
@@ -49,7 +55,6 @@ deleteModalNo.addEventListener("click", function () {
 });
 addEntryBtn.addEventListener("click", function () {
   var updateBtnTarget = event.target;
-  console.log(event);
   containerModal.classList.remove("hidden");
   modalH1.textContent = "Add Entry";
   submitButton.removeEventListener("click", updateEntry);
@@ -69,8 +74,7 @@ function getDay(event) {
     var targetDay = event.target;
     var targetDayId = targetDay.getAttribute("id");
     var targetDayText = targetDay.textContent;
-    var targetDayFirstChildText = targetDay.firstChild.textContent;
-    console.log(targetDayText);
+    targetDayFirstChildText = targetDay.firstChild.textContent;
     daySelectValue = targetDayId;
     dayName = targetDayId;
     selectedDayHeading.textContent =
@@ -79,8 +83,6 @@ function getDay(event) {
     setBackgroundImage();
   }
 }
-
-//----------new entry--------
 
 function enterNewData() {
   findNewIndex();
@@ -92,26 +94,19 @@ function enterNewData() {
   savingToStorage();
 }
 
-// Add eventlistener to submitButton.  Define getEntryValues
-
 function getEntryData(event) {
-  // Dom queries for modal elements
   daySelect = document.getElementById("daySelect");
   timeSelect = document.getElementById("timeSelect");
   inputBox = document.getElementById("descriptionSelect");
   var submitButton = document.getElementById("submitButton");
 
-  // Storing the text values of modal input elements
   daySelectValue = daySelect.options[daySelect.selectedIndex].value;
   timeSelectValue = timeSelect.options[timeSelect.selectedIndex].textContent;
   inputBoxValue = inputBox.value;
-
   currentDayName = daySelect.options[daySelect.selectedIndex].textContent;
+  selectedDayHeading.textContent = "Scheduled Events for " + currentDayName;
   enterNewData();
-  console.log(currentDayName);
   addTableEntries();
-  console.log(currentDayName);
-  //------- resetting values and hiding modal
 
   containerModal.classList.add("hidden");
   daySelect.selectedIndex = 0;
@@ -119,7 +114,6 @@ function getEntryData(event) {
   inputBox.value = "";
 }
 
-//Function to dynamically create tr and td
 function addTableEntries() {
   tableBody.textContent = "";
   for (var i = 0; i < weekDaysData[daySelectValue].length; i++) {
@@ -152,14 +146,11 @@ function addTableEntries() {
     tableRow.append(tableDataTime, tableDataTask);
     tableBody.append(tableRow);
   }
-  selectedDayHeading.textContent = "Scheduled Events for " + currentDayName;
+
   getDayLength();
 }
 
-// add event listener to button to open the modal
-
 function openModal(event) {
-  console.log(event);
   containerModal.classList.remove("hidden");
 }
 
@@ -191,11 +182,9 @@ function updateEntry() {
   currentDayName = daySelect.options[daySelect.selectedIndex].textContent;
 
   if (dayName === daySelectValue) {
-    console.log("same");
     weekDaysData[daySelectValue][dayScheduleIndex].description = inputBoxValue;
     weekDaysData[daySelectValue][dayScheduleIndex].time = timeSelectValue;
   } else {
-    console.log("not same");
     weekDaysData[dayName].splice(dayScheduleIndex, 1);
 
     findNewIndex();
@@ -209,13 +198,11 @@ function updateEntry() {
 
   addTableEntries();
 
-  console.log("table created");
   selectedDayHeading.textContent = "Scheduled Events for " + currentDayName;
   containerModal.classList.add("hidden");
   daySelect.selectedIndex = 0;
   timeSelect.selectedIndex = 0;
   inputBox.value = "";
-  console.log("reset value");
   containerModal.classList.add("hidden");
 }
 
@@ -238,9 +225,6 @@ function getDayLength() {
   saturdayCount.textContent = weekDaysData["saturday"].length;
 }
 
-//--------------sort entries at the time of new entry or update
-//--------------before sort check for length of array at selected day, if 0 add without sort
-
 var newIndex = 0;
 function findNewIndex() {
   newIndex = 0;
@@ -256,8 +240,6 @@ function findNewIndex() {
     }
   }
 }
-
-//----------- setting and getting data to/from local storage
 
 function savingToStorage() {
   var tempDataObj = weekDaysData;
@@ -304,13 +286,9 @@ function gettingDataObj() {
       friday: [],
       saturday: [],
     };
-  } else {
-    console.log("Data didnt load!");
   }
 }
-var modalBackground = document.querySelector(".modal");
-var deleteModalBackground = document.querySelector(".mo");
-//------Function to randomly choose an index of randomBackgroundUrls
+
 function shuffleTempArray() {
   tempBackgroundUrls = randomBackgroundUrls.slice(0);
   for (i = 0; i < randomBackgroundUrls.length; i++) {
@@ -333,8 +311,7 @@ function setBackgroundImage() {
     background.style.backgroundImage = "url(" + randomImageUrl + ")";
     modalBackground.style.backgroundImage = "url(" + randomImageUrl + ")";
     deleteModalBackground.style.backgroundImage = "url(" + randomImageUrl + ")";
-    console.log(modalBackground);
-    console.log(randomImageUrl);
+
     tempBackgroundUrls.splice(0, 1);
     var coinFlip = Math.floor(Math.random() * 100);
     if (coinFlip % 2 == 0) {
